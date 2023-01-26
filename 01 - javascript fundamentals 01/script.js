@@ -28,3 +28,12 @@ let myCurrentJob = "Teacher";
 console.log(firstName);
 console.log(person);
 console.log(myCurrentJob);
+
+// **ASSIGNMENT**
+// 1. Declare variables called 'country', 'continent' and 'population' and assign their values according to your own country (population in millions)
+// 2. Log their values to the console
+
+let [country, continent, population] = ["Croatia", "Europe", 3000000];
+console.log(country);
+console.log(continent);
+console.log(population);
