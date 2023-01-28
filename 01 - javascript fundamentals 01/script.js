@@ -246,3 +246,31 @@ if (height) {
 } else {
   console.log("height is undefined");
 }
+
+// ⬇️ Equality Operators -> == vs ===
+
+// === -> strict equality operator (no type conversion)
+// == -> loose equality operator (performs type conversion)
+
+const yourAge = 18;
+
+if (yourAge === 18) console.log("You just become adult! (strict)");
+
+if (yourAge == 18) console.log("You just become adult! (loose)");
+
+// try to use === (strict) ALWAYS!
+
+const favNumber =
+  // prompt("What's your favorite number?")
+  // ||
+  33;
+console.log(favNumber, typeof favNumber);
+
+// 33 == "33" -> true
+// 33 === "33" -> false
+if (favNumber == 33) {
+  console.log("Loose operator works now. (number and string)");
+}
+if (favNumber !== 23) {
+  console.log("Why is 23 not a fav number?");
+}
