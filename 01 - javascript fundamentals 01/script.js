@@ -141,3 +141,31 @@ console.log(z, y);
 const averageAge = (ageJohn + ageSarah) / 2;
 console.log(ageJohn, ageSarah);
 console.log("average age", averageAge);
+
+// ⬇️ Strings & Template Literals
+const personName = "Mike";
+const personJob = "developer";
+const personBirthYear = 1985;
+const currYear = 2023;
+
+let someone =
+  "I'm " +
+  personName +
+  ", a " +
+  (currYear - personBirthYear) +
+  " years old " +
+  personJob +
+  "!";
+console.log(someone);
+
+someone = `I'm ${personName}, a ${
+  currYear - personBirthYear
+} years old ${personJob}!`;
+console.log(someone);
+
+console.log(`Just a regular string with backticks...`);
+
+console.log("String with \nmultiple \nlines");
+console.log(`String
+multiple
+lines`);
