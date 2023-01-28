@@ -102,3 +102,40 @@ const yearsUntilRetiring = (birthYear, firstName) => {
 
 console.log(yearsUntilRetiring(1994, "mike"));
 console.log(yearsUntilRetiring(1950, "seth"));
+
+// ⬇️ Introduction to Arrays
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+const years = new Array(1991, 1994, 2008, 2020);
+console.log(years);
+
+console.log(friends[0]);
+console.log(friends[2]);
+console.log(friends.length);
+console.log(friends[friends.length - 1]); // friends.at(-1) -> advanced
+
+friends[2] = "Jay";
+console.log(friends);
+
+// we can mutate arrays -> arrays are not primitive values
+// friends = ["Bob", "Alice"]; // we cant do this
+
+const name = "Samuel";
+const samuel = [name, "Jackson", 1958, "actor", friends];
+console.log(samuel);
+console.log(samuel.length);
+
+// Exercise
+const calcAge4 = (birthYear) => 2037 - birthYear;
+const newYears = [1990, 1967, 2002, 2010, 2018];
+const newAges = [
+  calcAge4(newYears[0]),
+  calcAge4(newYears[1]),
+  calcAge4(newYears[newYears.length - 1]),
+];
+console.log(newAges);
