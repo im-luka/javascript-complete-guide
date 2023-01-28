@@ -207,3 +207,31 @@ console.log(goat);
 console.log(
   `${goat.firstName} has ${goat.friends.length} friends, and his best friend is called ${goat.friends[0]}`
 );
+
+// ⬇️ Object Methods
+const mike = {
+  firstName: "Michael",
+  lastName: "Jordan",
+  birthYear: 1963,
+  job: "Athlete",
+  friends: ["Steve", "Toni", "Dennis"],
+  hasDriversLicense: true,
+  // calcAge: function () {
+  //   return 2023 - this.birthYear;
+  // },
+  calcAge: function () {
+    this.age = 2023 - this.birthYear;
+    return;
+  },
+  getSummary: function () {
+    this.calcAge();
+    return `${this.firstName} is a ${this.age}-years old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} drivers license`;
+  },
+};
+
+console.log(mike.calcAge());
+console.log(mike.age);
+console.log(mike.getSummary());
+// console.log(mike["calcAge"](1963));
