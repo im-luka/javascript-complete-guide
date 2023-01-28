@@ -168,3 +168,12 @@ console.log(mates.includes("Vito"));
 if (mates.includes("Peter")) {
   console.log("You have a friend called Peter");
 }
+
+// ⬇️ Introduction to Objects
+const goat = {
+  firstName: "Michael",
+  lastName: "Jordan",
+  age: "29",
+  job: "Athlete",
+  friends: ["Steve", "Toni", "Dennis"],
+};
