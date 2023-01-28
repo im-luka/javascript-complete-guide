@@ -252,3 +252,42 @@ console.log("Lifting weights repetition 10 🏋🏼");
 for (let i = 1; i <= 10; i++) {
   console.log(`Lifting weights repetition ${i} 🏋🏼`);
 }
+
+// ⬇️ Looping Arrays, Breaking and Continuing
+const someone = [
+  "Mike",
+  "Michelin",
+  2023 - 1991,
+  "Artist",
+  ["Johnny", "Kafka", "Sam"],
+  true,
+];
+
+const typesOfSomeone = [];
+for (let i = 0; i < someone.length; i++) {
+  typesOfSomeone.push(typeof someone[i]);
+}
+console.log(typesOfSomeone);
+
+const someYears = [1991, 2007, 1969, 2020];
+const ages = [];
+for (let i = 0; i < someYears.length; i++) {
+  ages.push(2023 - someYears[i]);
+}
+console.log(ages);
+
+// continue and break statements
+// continue - continue with the next iteration
+// break - exit the for loop, stop executing
+
+for (let i = 0; i < someone.length; i++) {
+  if (typeof someone[i] !== "string") continue; // outputs only string
+
+  console.log(someone[i], typeof someone[i]);
+}
+
+for (let i = 0; i < someone.length; i++) {
+  if (typeof someone[i] === "number") break; // when first number is found - the loop is terminated
+
+  console.log(someone[i], typeof someone[i]);
+}
