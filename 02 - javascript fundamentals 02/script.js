@@ -139,3 +139,32 @@ const newAges = [
   calcAge4(newYears[newYears.length - 1]),
 ];
 console.log(newAges);
+
+// ⬇️ Basic Array Methods
+const mates = ["Michael", "Steven", "Peter"];
+
+// Add elements
+const newLength = mates.push("Jay"); // add at the end
+console.log(mates);
+console.log(newLength);
+
+mates.unshift("John"); // at at the beginning
+console.log(mates);
+
+// Remove elements
+mates.pop(); // remove at the end
+const removedElement = mates.pop();
+console.log(mates);
+console.log(removedElement);
+
+mates.shift(); // remove at the beginning
+console.log(mates);
+
+console.log(mates.indexOf("Steven")); // returns index of element -> 1
+
+console.log(mates.includes("Steven")); // returns true if element is in array -> modern version of indexOf -> ES6 (preferred to use)
+console.log(mates.includes("Vito"));
+
+if (mates.includes("Peter")) {
+  console.log("You have a friend called Peter");
+}
