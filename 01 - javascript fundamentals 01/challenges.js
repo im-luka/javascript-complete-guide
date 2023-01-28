@@ -46,3 +46,9 @@ if (dolphinsScore >= 100 || koalasScore >= 100) {
 } else {
   console.log("There is no winner! ❌");
 }
+
+// CODING CHALLENGE #4
+
+const bill = 430;
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+console.log(`Bill is ${bill} - tip is ${tip} - the total is ${bill + tip}`);
