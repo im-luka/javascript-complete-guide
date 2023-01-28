@@ -100,7 +100,7 @@ withoutDeclaration = "some random string";
 console.log(withoutDeclaration);
 // -> possible but never do this
 
-// ⬇️ basic operators
+// ⬇️ Basic Operators
 // Math operators
 const futureYear = 2037;
 const ageJohn = futureYear - 1991;
@@ -130,3 +130,14 @@ console.log(ageSarah >= 18); // is greater than or equal?
 const isFullAge = ageSarah >= 18;
 
 console.log(futureYear - 1991 > futureYear - 2018);
+
+// ⬇️ Operator Precedence
+console.log(25 - 10 - 5);
+
+let z, y;
+z = y = 25 - 10 - 5; // z = y = 10; assignment -> right-to-left precedence
+console.log(z, y);
+
+const averageAge = (ageJohn + ageSarah) / 2;
+console.log(ageJohn, ageSarah);
+console.log("average age", averageAge);
