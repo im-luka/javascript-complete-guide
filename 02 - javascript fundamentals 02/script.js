@@ -83,3 +83,22 @@ function fruitProcessorMachine(apples, oranges) {
 }
 
 console.log(fruitProcessorMachine(2, 3));
+
+// ⬇️ Reviewing Functions
+const calcAge = (birthYear) => 2037 - birthYear;
+
+const yearsUntilRetiring = (birthYear, firstName) => {
+  const age = calcAge(birthYear);
+  const retirement = 65 - age;
+
+  if (retirement > 0) {
+    return `${firstName} will retire in ${retirement} years`;
+    console.log("never going to happen");
+  } else {
+    return -1;
+  }
+  console.log("never ever going to happen");
+};
+
+console.log(yearsUntilRetiring(1994, "mike"));
+console.log(yearsUntilRetiring(1950, "seth"));
