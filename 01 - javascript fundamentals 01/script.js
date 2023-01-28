@@ -351,3 +351,23 @@ if (23 > 10) {
 }
 
 console.log(`I'm ${2037 - 1991} years old`); // expression - not a statement
+
+// ⬇️ Ternary Operator
+const jimAge = 23;
+jimAge >= 18
+  ? console.log("Jim likes to drink wine 🍷")
+  : console.log("Jim likes to drink water 💧");
+
+const drink = jimAge >= 18 ? "wine 🍷" : "water 💧";
+console.log(drink);
+
+// quicker way of doing this
+let drink2;
+if (jimAge >= 18) {
+  drink2 = "wine 🍷";
+} else {
+  drink2 = "water 💧";
+}
+console.log(drink2);
+
+console.log(`Jim likes to drink ${jimAge >= 18 ? "wine 🍷" : "water 💧"}`);
