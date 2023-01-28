@@ -13,7 +13,7 @@ let first = "lux";
 let firstNamePerson;
 let first_name;
 
-// letters, numbers, underscores or dollar symbols are used for naming
+// letters, numbers, underscores or dollar signs are used for naming
 let lux_dule = "lux dule";
 let $function = 27;
 
@@ -80,3 +80,22 @@ console.log(
   typeof country,
   typeof language
 );
+
+// ⬇️ let, const & var
+// let - can change later - mutate
+// const - constant - never changes
+// var - the old let - not in use anymore
+
+let personAge = 30;
+personAge = 45;
+
+const birthYear = 2005;
+// birthYear = 2008; // not possible
+// const variable; // -> error - must initialize
+
+var openJob = "programmer";
+openJob = "teacher";
+
+withoutDeclaration = "some random string";
+console.log(withoutDeclaration);
+// -> possible but never do this
