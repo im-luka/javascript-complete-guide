@@ -215,3 +215,34 @@ console.log(n);
 
 console.log(2 + 3 + 4 + "5"); // 95
 console.log("10" - "4" - "3" - 2 + "5"); // 15
+
+// ⬇️ Truthy & Falsy Values
+
+// when converting to boolean
+// 5 (+ 1) Falsy values -> false, 0, '', undefined, null, NaN
+// Truthy values -> everything else
+
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean("luka"));
+console.log(Boolean({}));
+console.log(Boolean(""));
+console.log(Boolean(undefined));
+
+// -> conversion to boolean is implicit and not explicit by default
+// no need to cast to boolean when making a condition
+
+const money = 0;
+// no need for if(Boolean(money))
+if (money) {
+  console.log("I have money 💶");
+} else {
+  console.log("I'm broke 😞");
+}
+
+let height = 0; // Falsy
+if (height) {
+  console.log("height is defined");
+} else {
+  console.log("height is undefined");
+}
