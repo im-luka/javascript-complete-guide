@@ -99,3 +99,34 @@ openJob = "teacher";
 withoutDeclaration = "some random string";
 console.log(withoutDeclaration);
 // -> possible but never do this
+
+// ⬇️ basic operators
+// Math operators
+const futureYear = 2037;
+const ageJohn = futureYear - 1991;
+const ageSarah = futureYear - 2018;
+console.log(ageJohn, ageSarah);
+
+console.log(ageJohn * 2, ageJohn / 10, 2 ** 3);
+// 2 ** 3 -> 2 to the power of 3 = 2 * 2 * 2
+
+const firstString = "John";
+const secondString = "Smith";
+console.log(firstString + " " + secondString);
+
+// Assignment operators
+let x = 10 + 5; // 15
+x += 10; // x = x + 10 = 25
+x *= 4; // x = x * 4 = 100
+x++; // x = x + 1 = 101
+x--; // x = x - 1 = 100
+x--; // 99
+console.log(x);
+
+// Comparison operators : >, <, >=, <=
+console.log(ageJohn > ageSarah); // is greater than?
+console.log(ageSarah >= 18); // is greater than or equal?
+
+const isFullAge = ageSarah >= 18;
+
+console.log(futureYear - 1991 > futureYear - 2018);
