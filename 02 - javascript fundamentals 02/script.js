@@ -31,3 +31,28 @@ console.log(appleJuice);
 console.log(fruitProcessor(10, 9));
 
 // DRY - dont repeat yourself - functions purpose
+
+// ⬇️ Function Declarations vs Expressions
+// parameter - what function expects
+// argument - value given to a function
+
+// Function Declarations
+console.log(calcAge1(2008));
+// -> works because of hosting
+// -> declared functions can be called before declaration (not possible with function expressions)
+
+function calcAge1(birthYear /* parameter */) {
+  return 2037 - birthYear;
+}
+
+const age1 = calcAge1(1991 /* argument */);
+console.log(age1);
+
+// Function Expressions
+// function is a value
+const calcAge2 = function (birthYear) {
+  return 2037 - birthYear;
+};
+
+const age2 = calcAge2(1991);
+console.log(age2);
