@@ -16,3 +16,13 @@ const bmiMark = weightMark / heightMark ** 2;
 const bmiJohn = weightJohn / heightJohn ** 2;
 const markHigherBMI = bmiMark > bmiJohn;
 console.log(bmiMark, bmiJohn, markHigherBMI);
+
+// CODING CHALLENGE #2
+
+if (bmiMark > bmiJohn) {
+  console.log(`Mark's BMI (${bmiMark}) is higher than John's (${bmiJohn})`);
+} else if (bmiJohn > bmiMark) {
+  console.log(`John's BMI (${bmiJohn}) is higher than Mark's (${bmiMark})`);
+} else {
+  console.log(`Mark & John have the same BMI (${bmiMark || bmiJohn})`);
+}
