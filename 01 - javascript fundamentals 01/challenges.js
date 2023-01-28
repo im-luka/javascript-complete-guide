@@ -26,3 +26,23 @@ if (bmiMark > bmiJohn) {
 } else {
   console.log(`Mark & John have the same BMI (${bmiMark || bmiJohn})`);
 }
+
+// CODING CHALLENGE #3
+
+const dolphinsScore = (97 + 112 + 101) / 3;
+const koalasScore = (109 + 95 + 106) / 3;
+
+console.log("Dolphins score", dolphinsScore);
+console.log("Koalas score", koalasScore);
+
+if (dolphinsScore >= 100 || koalasScore >= 100) {
+  if (dolphinsScore > koalasScore) {
+    console.log("Dolphins are the winners! 🐬");
+  } else if (koalasScore > dolphinsScore) {
+    console.log("Koalas are the winners! 🐨");
+  } else {
+    console.log("Result is tied! 🟰");
+  }
+} else {
+  console.log("There is no winner! ❌");
+}
