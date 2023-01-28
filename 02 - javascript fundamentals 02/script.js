@@ -177,3 +177,33 @@ const goat = {
   job: "Athlete",
   friends: ["Steve", "Toni", "Dennis"],
 };
+
+// ⬇️ Dot vs Bracket Notations
+console.log(goat);
+console.log(goat.lastName);
+console.log(goat["lastName"]);
+
+const nameKey = "Name";
+console.log(goat["first" + nameKey]);
+console.log(goat[`last${nameKey}`]);
+
+const interestedIn =
+  // prompt(
+  //   "What do you want to know about GOAT? Choose between firstName, lastName, age, job and friends"
+  // )
+  // ||
+  "job";
+
+if (goat[interestedIn]) {
+  console.log(goat[interestedIn]);
+} else {
+  console.log("Wrong request!");
+}
+
+goat.location = "Chicago";
+goat["position"] = "shooting guard";
+console.log(goat);
+
+console.log(
+  `${goat.firstName} has ${goat.friends.length} friends, and his best friend is called ${goat.friends[0]}`
+);
