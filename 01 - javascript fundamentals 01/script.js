@@ -371,3 +371,9 @@ if (jimAge >= 18) {
 console.log(drink2);
 
 console.log(`Jim likes to drink ${jimAge >= 18 ? "wine 🍷" : "water 💧"}`);
+
+// ⬇️ ES5, ES6+ & ESNext
+
+// ES5 - fully supported in all browsers
+// ES6 - the greatest Javascript update to this day
+// ESNext - future versions of the language
