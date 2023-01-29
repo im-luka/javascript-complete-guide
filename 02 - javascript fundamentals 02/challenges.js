@@ -70,3 +70,30 @@ if (mark.calcBMI() > john.calcBMI()) {
 } else {
   console.log(`BMIs (${mark.calcBMI() || john.calcBMI()}) are the same`);
 }
+
+// CODING CHALLENGE #4
+
+const calculateTip = (bill) =>
+  bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+const calculateTotal = (bill, tip) => bill + tip;
+
+const calculateAverage = (arr) => {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+};
+
+const bills2 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips2 = [];
+const totals2 = [];
+
+for (let i = 0; i < bills2.length; i++) {
+  tips2.push(calculateTip(bills2[i]));
+  totals2.push(calculateTotal(bills2[i], tips2[i]));
+}
+
+console.log("tips", tips2, "average tips", calculateAverage(tips2));
+console.log("totals", totals2, "average totals", calculateAverage(totals2));

@@ -291,3 +291,46 @@ for (let i = 0; i < someone.length; i++) {
 
   console.log(someone[i], typeof someone[i]);
 }
+
+// ⬇️ Looping Backwards & Loops in Loops
+const mj = [
+  "Michael",
+  "Jordan",
+  2023 - 1963,
+  "Athlete",
+  ["Steve", "Toni", "Dennis"],
+  true,
+];
+
+for (let i = mj.length - 1; i >= 0; i--) {
+  console.log(i, mj[i]);
+}
+
+for (let i = 1; i <= 3; i++) {
+  console.log(`Exercise #${i} 🏋🏼`);
+  for (let j = 1; j <= 5; j++) {
+    console.log(`Exercise: ${i} - Repetition #${j} 💪🏼`);
+  }
+}
+
+// ⬇️ The While Loop
+// For
+for (let i = 1; i <= 10; i++) {
+  console.log(`For: Lifting weights repetition ${i} 🏋🏼`);
+}
+
+// While
+let counter = 1;
+while (counter <= 10) {
+  console.log(`While: Lifting weights repetition ${counter} 🏋🏼`);
+  counter++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+while (dice !== 6) {
+  console.log(`You rolled a ${dice} 🎲`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) {
+    console.log("Loop is about to end 🔚");
+  }
+}
