@@ -291,3 +291,24 @@ for (let i = 0; i < someone.length; i++) {
 
   console.log(someone[i], typeof someone[i]);
 }
+
+// ⬇️ Looping Backwards & Loops in Loops
+const mj = [
+  "Michael",
+  "Jordan",
+  2023 - 1963,
+  "Athlete",
+  ["Steve", "Toni", "Dennis"],
+  true,
+];
+
+for (let i = mj.length - 1; i >= 0; i--) {
+  console.log(i, mj[i]);
+}
+
+for (let i = 1; i <= 3; i++) {
+  console.log(`Exercise #${i} 🏋🏼`);
+  for (let j = 1; j <= 5; j++) {
+    console.log(`Exercise: ${i} - Repetition #${j} 💪🏼`);
+  }
+}
