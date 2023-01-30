@@ -81,3 +81,49 @@ const calcTemperature2 = (arr1, arr2) => {
 console.log(
   calcTemperature2(temperatures, [10, 55, 'error', 90, -4, -8, 11, 57])
 );
+
+// ⬇️ Debugging
+
+const measureKelvin = () => {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+    // C) FIX
+    value: Number(prompt('Degrees celsius:')),
+  };
+
+  // B) FIND
+  console.table(measurement); // -> nice view
+
+  // console.log(measurement.value);
+  // console.warn(measurement.value); // -> orange
+  // console.error(measurement.value); // -> red
+
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+
+// A) IDENTITY
+console.log(measureKelvin());
+
+// - use Chrome debugger for debugging (Inspect - Sources - Breakpoints)
+
+// Using a debugger
+const calcBug = (arr1, arr2) => {
+  const arrMerged = arr1.concat(arr2);
+  let max = arrMerged[0];
+  let min = arrMerged[0];
+
+  for (let i = 0; i < arrMerged.length; i++) {
+    const currNum = arrMerged[i];
+    if (typeof currNum !== 'number') continue;
+
+    // debugger; -> use this keyword for debugging
+    if (currNum > max) max = currNum;
+    if (currNum < min) min = currNum;
+  }
+
+  return max - min;
+};
+
+console.log(calcBug([3, 5, 1], [9, 4, 5]));
