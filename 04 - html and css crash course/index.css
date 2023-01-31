@@ -1,0 +1,18 @@
+body {
+  background-color: rgb(240, 240, 198);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.first {
+  color: red;
+}
+
+#your-name {
+  background-color: rgb(229, 229, 156);
+  border: 5px solid blue;
+}
