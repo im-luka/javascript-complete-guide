@@ -1,11 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: rgb(240, 240, 198);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+  padding: 75px;
 }
 
 h1 {
   font-size: 50px;
+  margin-bottom: 25px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 20px;
 }
 
 .first {
@@ -15,4 +32,25 @@ h1 {
 #your-name {
   background-color: rgb(229, 229, 156);
   border: 5px solid blue;
+  width: 400px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+a {
+  background-color: yellowgreen;
+}
+
+#image {
+  width: 200px;
+}
+
+#your-name h2 {
+  color: purple;
 }
