@@ -18,7 +18,6 @@ console.log(document.querySelector(".guess").value);
 
 let score = 20;
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
-document.querySelector(".number").textContent = secretNumber;
 
 document.querySelector(".check").addEventListener("click", (event) => {
   const message = document.querySelector(".message");
@@ -35,6 +34,7 @@ document.querySelector(".check").addEventListener("click", (event) => {
 
     document.querySelector("body").style.backgroundColor = "#60b347";
     document.querySelector(".number").style.width = "30rem";
+    document.querySelector(".number").textContent = secretNumber;
 
     // When guess is too high
   } else if (guess > secretNumber) {
@@ -58,4 +58,9 @@ document.querySelector(".check").addEventListener("click", (event) => {
       document.querySelector(".score").textContent = 0;
     }
   }
+});
+
+// refreshing the page, you could also hard-code all of the values to it's initial values (before playing the game)
+document.querySelector(".again").addEventListener("click", () => {
+  window.location.reload();
 });
