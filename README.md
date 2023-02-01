@@ -2,7 +2,7 @@
 
 *Learning Javascript from scratch, by going through a course (highly recommend), to increase my knowledge on deeper level.  
 Posting resources here. 📑  
-Resources are project based and cover all of the main topics to help you start as fast as possible..*
+Resources are project based and cover all of the main topics to help you start as fast as possible.*
 
 > [Check out this great course created by Jonas](https://www.udemy.com/course/the-complete-javascript-course/)
 
