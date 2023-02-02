@@ -16,7 +16,7 @@ Resources are project based and cover all of the main topics to help you start a
 
 ---
 
-#### *05 - modal window
+#### *05 - modal window*
 
 ![Screenshot 2023-02-02 at 20 30 08](https://user-images.githubusercontent.com/46372998/216431669-e1984e1c-7628-4233-bdc6-a5c81fd1a831.png)
 
