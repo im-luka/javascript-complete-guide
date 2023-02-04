@@ -116,4 +116,49 @@ someone.calcAge = person.calcAge;
 someone.calcAge();
 
 const f = person.calcAge;
-f(); // error - undefined
+// f(); // error - undefined
+
+// ⬇️ regular functions vs arrow functions
+const michael = {
+  firstName: "Michael",
+  birthYear: 1985,
+  calcAge: function () {
+    // console.log(this);
+    console.log(2037 - this.birthYear);
+
+    // Solution 1:
+    // const self = this;
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.birthYear >= 1981 && self.birthYear <= 1996);
+    //   // console.log(this.birthYear >= 1981 && this.birthYear <= 1996);
+    // };
+
+    // Solution 2
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.birthYear >= 1981 && this.birthYear <= 1996);
+    };
+
+    isMillenial();
+  },
+
+  greet: () => console.log(`Hey ${this.firstName}`),
+};
+// michael.greet(); // undefined - 'this' not working with arrow functions
+michael.greet();
+michael.calcAge();
+
+// arguments keyword
+const addExpr2 = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr2(2, 3);
+addExpr2(2, 3, 5, 8, 12, 19);
+
+var addArrow2 = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+// addArrow2(2, 5, 8); // error - arguments does not exist in arrow functions
