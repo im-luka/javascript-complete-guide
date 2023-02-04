@@ -1,5 +1,6 @@
 "use strict";
 
+// ⬇️ scoping
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
 
@@ -35,3 +36,51 @@ const firstName = "johnny";
 calcAge(1985);
 // console.log(age); // can't access
 // printAge() // can't access;
+
+// ⬇️ hosting & TDZ (temporal dead zone)
+// VARIABLES
+// error thrown because of the TDZ
+// console.log(me);
+// console.log(job);
+// console.log(year);
+
+var me = "luka";
+let job = "dev";
+const year = 1998;
+
+// FUNCTIONS
+// declaration works because of hosting
+console.log(addDecl(2, 3));
+// expression & arrow functions not working because it's just a variable
+// console.log(addExpr(2, 3));
+// console.log(addArrow(2, 3));
+
+function addDecl(a, b) {
+  return a + b;
+}
+
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+const addArrow = (a, b) => a + b;
+
+// Example
+// code will execute, dangerous - never use var
+console.log(numProducts);
+if (!numProducts) deleteShoppingCart();
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log("All products deleted!");
+}
+
+var x = 1;
+let y = 2;
+const z = 3;
+
+console.log(x === window.x); // true
+console.log(x === window.y); // false
+console.log(x === window.z); // false
+// variables created with 'var' will create window prop (bad bad practice)
