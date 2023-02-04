@@ -162,3 +162,58 @@ var addArrow2 = (a, b) => {
   return a + b;
 };
 // addArrow2(2, 5, 8); // error - arguments does not exist in arrow functions
+
+// ⬇️ primitives vs objects
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+
+const johnny = {
+  name: "johnny",
+  age: 30,
+};
+
+const friend = johnny;
+friend.age = 35;
+
+console.log("Friend:", friend);
+console.log("Me:", johnny);
+
+// Primitive types
+let lastName = "Williams";
+let oldLastName = lastName;
+lastName = "Davis";
+console.log(lastName);
+console.log(oldLastName);
+
+// Reference types
+const jessica = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+};
+const marriedJessica = jessica;
+marriedJessica.lastName = "Davis";
+console.log(jessica);
+console.log(marriedJessica);
+
+// marriedJessica = {}; // not working - can't allocate new memory address
+
+// Copying objects
+const jessica2 = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+  family: ["Alice", "Bob", "Sarah"],
+};
+
+const jessica2Copy = Object.assign({}, jessica2);
+jessica2Copy.lastName = "Davis";
+console.log(jessica2);
+console.log(jessica2Copy);
+
+jessica2Copy.family.push("Mary", "Seth");
+console.log(jessica2);
+console.log(jessica2Copy);
