@@ -84,3 +84,36 @@ console.log(x === window.x); // true
 console.log(x === window.y); // false
 console.log(x === window.z); // false
 // variables created with 'var' will create window prop (bad bad practice)
+
+// ⬇️ this keyword
+console.log(this);
+
+const calcAge2 = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calcAge2(1990);
+
+const calcAgeArrow2 = (birthYear) => {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calcAgeArrow2(1995);
+
+const person = {
+  birthYear: 1985,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.birthYear);
+  },
+};
+person.calcAge();
+
+const someone = {
+  year: 2017,
+};
+someone.calcAge = person.calcAge;
+someone.calcAge();
+
+const f = person.calcAge;
+f(); // error - undefined
