@@ -50,6 +50,7 @@ const restaurant = {
 };
 
 // ⬇️ destructuring arrays
+
 const arr = [2, 3, 4];
 const a = arr[0];
 const b = arr[1];
@@ -123,6 +124,7 @@ restaurant.orderDelivery({
 });
 
 // ⬇️ spread operator
+
 const array = [7, 8, 9];
 const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
 console.log(badNewArray);
