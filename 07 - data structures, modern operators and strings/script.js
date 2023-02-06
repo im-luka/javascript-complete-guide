@@ -42,6 +42,11 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 // ⬇️ destructuring arrays
@@ -145,9 +150,9 @@ console.log(...str);
 
 // Real-world example
 const ingredients = [
-  prompt("Let's make pasta! Ingredient 1?"),
-  prompt("Ingredient 2?"),
-  prompt("Ingredient 3?"),
+  // prompt("Let's make pasta! Ingredient 1?"),
+  // prompt("Ingredient 2?"),
+  // prompt("Ingredient 3?"),
 ];
 console.log(ingredients);
 
@@ -161,3 +166,41 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+
+// ⬇️ rest pattern and parameters
+// 1) DESTRUCTURING
+
+// SPREAD, because on RIGHT side of =
+const arrr = [1, 2, ...[3, 4]];
+
+// REST, because on LEFT side of =
+const [o, l, ...others] = [1, 2, 3, 4, 5];
+console.log(o, l, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// 2) FUNCTIONS
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
+add(2, 3);
+add(5, 3, 7, 2);
+add(5, 3, 7, 2, 9, 1, 3, 5);
+
+const s = [13, 5, 7];
+add(...s);
+
+restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
+restaurant.orderPizza("mushrooms");
