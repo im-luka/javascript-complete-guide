@@ -236,3 +236,13 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza("salad", "cheese");
+
+// ⬇️ nullish coalescing operator
+
+restaurant.numGuests = 0;
+const newGuests = restaurant.numGuests || 10;
+console.log(newGuests);
+
+// Nullish: null and undefined (NOT 0 or "")
+const newGuestsCorrect = restaurant.numGuests ?? 10;
+console.log(newGuestsCorrect);
