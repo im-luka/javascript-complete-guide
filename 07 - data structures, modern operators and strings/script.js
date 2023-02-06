@@ -246,3 +246,36 @@ console.log(newGuests);
 // Nullish: null and undefined (NOT 0 or "")
 const newGuestsCorrect = restaurant.numGuests ?? 10;
 console.log(newGuestsCorrect);
+
+// ⬇️ logical assignment operator
+
+const restaurant1 = {
+  name: "Capri",
+  numGuests: 20,
+};
+
+const restaurant2 = {
+  name: "La Piazza",
+  owner: "Giovanni Rossi",
+};
+
+// OR assignment operator
+// restaurant1.numGuests = restaurant1.numGuests || 10;
+// restaurant2.numGuests = restaurant2.numGuests || 10;
+
+restaurant1.numGuests ||= 10;
+restaurant2.numGuests ||= 10;
+
+// nullish assignment operator (null or undefined)
+restaurant1.numGuests ??= 10;
+restaurant2.numGuests ??= 10;
+
+// AND assignment operator
+// restaurant1.owner = restaurant1.owner && "<ANONYMOUS>";
+// restaurant2.owner = restaurant2.owner && "<ANONYMOUS>";
+
+restaurant1.owner &&= "<ANONYMOUS>";
+restaurant2.owner &&= "<ANONYMOUS>";
+
+console.log(restaurant1);
+console.log(restaurant2);
