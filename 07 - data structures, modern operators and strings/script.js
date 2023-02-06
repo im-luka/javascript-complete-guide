@@ -168,8 +168,8 @@ console.log(restaurantCopy.name);
 console.log(restaurant.name);
 
 // ⬇️ rest pattern and parameters
-// 1) DESTRUCTURING
 
+// 1) DESTRUCTURING
 // SPREAD, because on RIGHT side of =
 const arrr = [1, 2, ...[3, 4]];
 
@@ -204,3 +204,35 @@ add(...s);
 
 restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
 restaurant.orderPizza("mushrooms");
+
+// ⬇️ short circuiting (&& and ||)
+// use ANY data type, return ANY data type, short-circuiting
+
+// ||
+console.log("----- OR -----");
+console.log(3 || "luka");
+console.log("" || "luka");
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || "" || "Hello" || 23 || null);
+
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+// &&
+console.log("----- AND -----");
+console.log(0 && "luka");
+console.log(7 && "luka");
+
+console.log("Hello" && 23 && null && "luka");
+
+// Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
+
+restaurant.orderPizza && restaurant.orderPizza("salad", "cheese");
