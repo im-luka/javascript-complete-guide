@@ -1,6 +1,7 @@
 "use strict";
 
 // CODING CHALLENGE #1
+console.log("----- CHALLENGE #1 -----");
 
 const game = {
   team1: "Bayern Munich",
@@ -76,3 +77,29 @@ const {
   odds: { team1: t1, team2: t2 },
 } = game;
 console.log((t1 < t2 && `Team 1 wins ${t1}`) || `Team 2 wins ${t2}`);
+
+// CODING CHALLENGE #1
+console.log("----- CHALLENGE #2 -----");
+
+for (const [goal, player] of game.scored.entries()) {
+  console.log(`Goal ${goal + 1}: ${player}`);
+}
+
+let averageOdd = 0;
+const odds = Object.values(game.odds);
+for (const odd of odds) {
+  averageOdd += odd;
+}
+console.log(`Average odd is: ${averageOdd / odds.length}`);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  console.log(
+    game[team] ? `Odd of victory ${game[team]}: ${odd}` : `Odd of draw: ${odd}`
+  );
+}
+
+let scorers = {};
+for (const players of game.scored.values()) {
+  scorers[players] = scorers[players] ? scorers[players] + 1 : 1;
+}
+console.log(scorers);
