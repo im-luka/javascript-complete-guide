@@ -281,3 +281,16 @@ restaurant2.owner &&= "<ANONYMOUS>";
 
 console.log(restaurant1);
 console.log(restaurant2);
+
+// ⬇️ the for-of loop
+
+const mainMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of mainMenu) {
+  console.log(item);
+}
+
+for (const [i, el] of mainMenu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+console.log([...mainMenu.entries()]);
