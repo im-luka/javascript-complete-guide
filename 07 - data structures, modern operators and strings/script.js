@@ -444,3 +444,38 @@ console.log(
   new Set(["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"]).size
 );
 console.log(new Set("jasamlukakajima").size);
+
+// ⬇️ maps fundamentals
+
+const resto = new Map();
+resto.set("name", "Classico Italiano");
+resto.set(1, "Firence, Italy");
+resto.set(2, "Lisbon, Portugal");
+
+resto
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open")
+  .set(false, "We are closed");
+
+console.log(resto.get("name"));
+console.log(resto.get(true));
+console.log(resto.get("1"));
+
+const time = 21;
+console.log(resto.get(time > resto.get("open") && time < resto.get("close")));
+
+console.log(resto.has("categories"));
+console.log(resto.delete(2));
+// resto.clear();
+
+const arrayy = [1, 2];
+// resto.set([1, 2], "Test"); // not working - not the same in memory
+resto.set(arrayy, "Test");
+resto.set(document.querySelector("h1"), "Heading");
+console.log(resto);
+console.log(resto.size);
+
+// console.log(resto.get([1, 2])); // not working - not the same in memory
+console.log(resto.get(arrayy));
