@@ -352,6 +352,7 @@ const restaurante = {
 console.log(restaurante);
 
 // ⬇️ optional chaining
+
 if (restaurante.openingHourse && restaurante.openingHourse.mon) {
   console.log(restaurante.openingHourse.mon.open); // would throw error if there is no if condition
 }
@@ -382,3 +383,27 @@ const users = [
 
 console.log(users[0]?.name ?? "User array empty");
 console.log(users[1]?.name ?? "User does not exist");
+
+// ⬇️ looping objects
+
+// property NAMES
+const properties = Object.keys(openingHourse);
+console.log(properties);
+let openStr = `We are open at ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+// property VALUES
+const values = Object.values(openingHourse);
+console.log(values);
+
+// Entire object
+const entries = Object.entries(openingHourse);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
