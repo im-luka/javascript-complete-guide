@@ -1,6 +1,7 @@
 "use strict";
 
 // CODING CHALLENGE #1
+console.log("----- CHALLENGE #1 -----");
 
 const game = {
   team1: "Bayern Munich",
@@ -76,3 +77,61 @@ const {
   odds: { team1: t1, team2: t2 },
 } = game;
 console.log((t1 < t2 && `Team 1 wins ${t1}`) || `Team 2 wins ${t2}`);
+
+// CODING CHALLENGE #1
+console.log("----- CHALLENGE #2 -----");
+
+for (const [goal, player] of game.scored.entries()) {
+  console.log(`Goal ${goal + 1}: ${player}`);
+}
+
+let averageOdd = 0;
+const odds = Object.values(game.odds);
+for (const odd of odds) {
+  averageOdd += odd;
+}
+console.log(`Average odd is: ${averageOdd / odds.length}`);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  console.log(
+    game[team] ? `Odd of victory ${game[team]}: ${odd}` : `Odd of draw: ${odd}`
+  );
+}
+
+let scorers = {};
+for (const players of game.scored.values()) {
+  scorers[players] = scorers[players] ? scorers[players] + 1 : 1;
+}
+console.log(scorers);
+
+// CODING CHALLENGE #1
+console.log("----- CHALLENGE #3 -----");
+
+const gameEvents = new Map([
+  [17, "⚽ GOAL"],
+  [36, "� Substitution"],
+  [47, "⚽ GOAL"],
+  [61, "� Substitution"],
+  [64, "� Yellow card"],
+  [69, "� Red card"],
+  [70, "� Substitution"],
+  [72, "� Substitution"],
+  [76, "⚽ GOAL"],
+  [80, "⚽ GOAL"],
+  [92, "� Yellow card"],
+]);
+
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+gameEvents.delete(64);
+console.log(gameEvents);
+
+console.log(
+  `Event happened, on average, every ${90 / gameEvents.size} minutes`
+);
+
+for (const [min, event] of gameEvents) {
+  const half = `${min < 45 ? "FIRST" : "SECOND"} HALF`;
+  console.log(`[${half}] ${min}: ${event}`);
+}
