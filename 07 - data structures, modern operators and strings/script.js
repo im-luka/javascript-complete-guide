@@ -479,3 +479,40 @@ console.log(resto.size);
 
 // console.log(resto.get([1, 2])); // not working - not the same in memory
 console.log(resto.get(arrayy));
+
+// ⬇️ maps iteration
+
+const question = new Map([
+  ["question", "What is the best programming language?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JavaScript"],
+  ["correct", 3],
+  [true, "Correct"],
+  [false, "Try again"],
+]);
+console.log(question);
+
+// Convert object to map
+console.log(Object.entries(openingHourse));
+const hoursMap = new Map(Object.entries(openingHourse));
+console.log(hoursMap);
+
+// Quiz app
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+// const answer = Number(prompt("Your answer"));
+const answer = 3;
+console.log(answer);
+
+console.log(question.get(question.get("correct") === answer));
+
+// Convert map to array
+console.log([...question]);
+console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
