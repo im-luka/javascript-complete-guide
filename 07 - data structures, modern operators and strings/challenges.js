@@ -78,7 +78,7 @@ const {
 } = game;
 console.log((t1 < t2 && `Team 1 wins ${t1}`) || `Team 2 wins ${t2}`);
 
-// CODING CHALLENGE #1
+// CODING CHALLENGE #2
 console.log("----- CHALLENGE #2 -----");
 
 for (const [goal, player] of game.scored.entries()) {
@@ -104,7 +104,7 @@ for (const players of game.scored.values()) {
 }
 console.log(scorers);
 
-// CODING CHALLENGE #1
+// CODING CHALLENGE #3
 console.log("----- CHALLENGE #3 -----");
 
 const gameEvents = new Map([
@@ -135,3 +135,27 @@ for (const [min, event] of gameEvents) {
   const half = `${min < 45 ? "FIRST" : "SECOND"} HALF`;
   console.log(`[${half}] ${min}: ${event}`);
 }
+
+// CODING CHALLENGE #4
+console.log("----- CHALLENGE #4 -----");
+
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+const convertData = (value) => {
+  const data = value.trim().toLowerCase().split("_");
+  for (let i = 1; i < data.length; i++) {
+    data[i] = data[i][0].toUpperCase() + data[i].slice(1);
+  }
+  return data.join("").padEnd(20, " ");
+};
+
+const textAreaEl = document.querySelector("textarea");
+const buttonEl = document.querySelector("button");
+
+buttonEl.addEventListener("click", () => {
+  const values = textAreaEl.value.split("\n");
+  for (const [i, val] of values.entries()) {
+    console.log(convertData(val).concat(" ", "✅".repeat(i + 1)));
+  }
+});
