@@ -61,3 +61,5 @@ const newPassport = function (person) {
 };
 newPassport(mike);
 checkIn(flight, mike);
+
+// ⬇️ First-Class and Higher-Order Functions
