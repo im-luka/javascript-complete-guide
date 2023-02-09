@@ -49,7 +49,7 @@ const restaurant = {
   },
 };
 
-// ⬇️ destructuring arrays
+// ⬇️ Destructuring Arrays
 
 const arr = [2, 3, 4];
 const a = arr[0];
@@ -82,7 +82,7 @@ console.log(i, j, k);
 const [p = 1, q = 1, r = 1] = [8];
 console.log(p, q, r);
 
-// ⬇️ destructuring objects
+// ⬇️ Destructuring Objects
 
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
@@ -123,7 +123,7 @@ restaurant.orderDelivery({
   starterIndex: 2,
 });
 
-// ⬇️ spread operator
+// ⬇️ Spread Operator
 
 const array = [7, 8, 9];
 const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
@@ -169,7 +169,7 @@ restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
 
-// ⬇️ rest pattern and parameters
+// ⬇️ Rest Pattern and Parameters
 
 // 1) DESTRUCTURING
 // SPREAD, because on RIGHT side of =
@@ -207,7 +207,7 @@ add(...s);
 restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
 restaurant.orderPizza("mushrooms");
 
-// ⬇️ short circuiting (&& and ||)
+// ⬇️ Short Circuiting (&& and ||)
 // use ANY data type, return ANY data type, short-circuiting
 
 // ||
@@ -239,7 +239,7 @@ if (restaurant.orderPizza) {
 
 restaurant.orderPizza && restaurant.orderPizza("salad", "cheese");
 
-// ⬇️ nullish coalescing operator
+// ⬇️ Nullish Coalescing Operator
 
 restaurant.numGuests = 0;
 const newGuests = restaurant.numGuests || 10;
@@ -249,7 +249,7 @@ console.log(newGuests);
 const newGuestsCorrect = restaurant.numGuests ?? 10;
 console.log(newGuestsCorrect);
 
-// ⬇️ logical assignment operator
+// ⬇️ Logical Assignment Operator
 
 const restaurant1 = {
   name: "Capri",
@@ -282,7 +282,7 @@ restaurant2.owner &&= "<ANONYMOUS>";
 console.log(restaurant1);
 console.log(restaurant2);
 
-// ⬇️ the for-of loop
+// ⬇️ The 'for-of' Loop
 
 const mainMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
@@ -295,7 +295,7 @@ for (const [i, el] of mainMenu.entries()) {
 }
 console.log([...mainMenu.entries()]);
 
-// ⬇️ enhanced object literals
+// ⬇️ Enhanced Object Literals
 
 const weekdays2 = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
@@ -351,7 +351,7 @@ const restaurante = {
 
 console.log(restaurante);
 
-// ⬇️ optional chaining
+// ⬇️ Optional Chaining
 
 if (restaurante.openingHourse && restaurante.openingHourse.mon) {
   console.log(restaurante.openingHourse.mon.open); // would throw error if there is no if condition
@@ -384,7 +384,7 @@ const users = [
 console.log(users[0]?.name ?? "User array empty");
 console.log(users[1]?.name ?? "User does not exist");
 
-// ⬇️ looping objects
+// ⬇️ Looping Objects
 
 // property NAMES
 const properties = Object.keys(openingHourse);
@@ -408,7 +408,7 @@ for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
 
-// ⬇️ sets
+// ⬇️ Sets
 
 const ordersSet = new Set([
   "Pasta",
@@ -445,7 +445,7 @@ console.log(
 );
 console.log(new Set("jasamlukakajima").size);
 
-// ⬇️ maps fundamentals
+// ⬇️ Maps Fundamentals
 
 const resto = new Map();
 resto.set("name", "Classico Italiano");
@@ -480,7 +480,7 @@ console.log(resto.size);
 // console.log(resto.get([1, 2])); // not working - not the same in memory
 console.log(resto.get(arrayy));
 
-// ⬇️ maps iteration
+// ⬇️ Maps Iteration
 
 const question = new Map([
   ["question", "What is the best programming language?"],
@@ -517,7 +517,7 @@ console.log(question.entries());
 console.log([...question.keys()]);
 console.log([...question.values()]);
 
-// ⬇️ strings - part 01
+// ⬇️ Strings - Part 01
 
 const airline = "TAP Air Portugal";
 const plane = "A320";
@@ -561,7 +561,7 @@ console.log(new String("luka")); // JS under the hood converts all strings to St
 console.log(typeof new String("luka"));
 console.log(typeof new String("lux").slice(1));
 
-// ⬇️ strings - part 02
+// ⬇️ Strings - Part 02
 
 console.log(airline.toLowerCase());
 console.log(airline.toUpperCase());
@@ -618,7 +618,7 @@ checkBaggage("I have a laptop, some foot and a pocket knife");
 checkBaggage("Socks and camera");
 checkBaggage("Got some snacks and a gun for protection");
 
-// ⬇️ strings - part 03
+// ⬇️ Strings - Part 03
 
 console.log("a+very+nice+string".split("+"));
 console.log("Luka Dule".split(" "));
@@ -664,7 +664,7 @@ planesInLine(5);
 planesInLine(3);
 planesInLine(12);
 
-// ⬇️ string methods practice
+// ⬇️ String Methods Practice
 
 const flights =
   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
