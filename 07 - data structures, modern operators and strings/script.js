@@ -617,3 +617,48 @@ const checkBaggage = (items) => {
 checkBaggage("I have a laptop, some foot and a pocket knife");
 checkBaggage("Socks and camera");
 checkBaggage("Got some snacks and a gun for protection");
+
+// ⬇️ strings - part 03
+
+console.log("a+very+nice+string".split("+"));
+console.log("Luka Dule".split(" "));
+
+const [firstName, lastName] = "Luka Dule".split(" ");
+console.log(firstName, lastName);
+
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+const capitalizeName = (name) => {
+  const names = name.split(" ");
+  const namesUpper = [];
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+  }
+  console.log(namesUpper.join(" "));
+};
+
+capitalizeName("jessica ann smith davis");
+capitalizeName("luka dule");
+
+// Padding
+const message = "Go to gate 23!";
+console.log(message.padStart(25, "+").padEnd(30, "-"));
+console.log("luka".padStart(20, "+").padEnd(30, "-"));
+
+const maskCreditCard = (number) => {
+  const str = number + "";
+  return str.slice(-4).padStart(str.length, "*");
+};
+console.log(maskCreditCard(4332877561197513));
+
+// Repeat
+const message2 = "Bad weather... All Departures Delayed...";
+console.log(message2.repeat(5));
+
+const planesInLine = (n) => {
+  console.log(`There are ${n} planes in line ${"🛩️".repeat(n)}`);
+};
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
