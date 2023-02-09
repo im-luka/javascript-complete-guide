@@ -63,3 +63,36 @@ newPassport(mike);
 checkIn(flight, mike);
 
 // ⬇️ First-Class and Higher-Order Functions
+
+// ⬇️ Higher-Order Functions
+// function that accepts (or returns) another function
+
+// abstraction - hide detail of code implementation because it is not important
+
+const oneWord = function (str) {
+  return str.replace(/ /g, " ").toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(" ");
+  return [first.toUpperCase(), ...others].join(" ");
+};
+
+// Higher-order function
+// abstraction - transforming the string, not important how it's done. only purpose is to transform it. way of transforming could be different. that's why callback function is called (describing the method of transforming)
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer("JavaScript is the best!", upperFirstWord);
+transformer("JavaScript is the best!", oneWord);
+
+// JS uses callbacks all the time
+const high5 = function () {
+  console.log("👋🏼");
+};
+document.body.addEventListener("click", high5);
+["Jonas", "Martha", "Adam"].forEach(high5);
