@@ -206,3 +206,26 @@ console.log(addVAT(23));
 // Challenge
 const addTAX = (rate) => (value) => value + value * rate;
 console.log(addTAX(0.23)(23));
+
+// ⬇️ IIFE -> Immediately Invoked Function Expressions
+// function that we need only once. execute it & function disappears
+
+const runOnce = function () {
+  console.log("This will never run again");
+};
+runOnce(); // ❌
+
+(function () {
+  console.log("This will never run again");
+  const isPrivate = 23;
+})(); // ✅ - IIFE
+console.log(isPrivate); // wouldn't work because of scope
+
+(() => console.log("This will also never run again"))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+// console.log(isPrivate); // wouldn't work ✅
+console.log(notPrivate); // would work ❌
