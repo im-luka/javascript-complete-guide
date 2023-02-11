@@ -231,6 +231,8 @@ runOnce(); // ❌
 console.log(notPrivate); // would work ❌
 
 // ⬇️ Closures
+// 🚶🏼‍♂️ - 🎒 - 📑
+// function - closure - variables
 
 const secureBooking = function () {
   let passengerCount = 0;

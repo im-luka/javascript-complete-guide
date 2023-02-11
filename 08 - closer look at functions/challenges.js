@@ -46,3 +46,14 @@ document
 const displayResultsGlobal = poll.displayResults;
 displayResultsGlobal.call({ answers: [5, 2, 3] }, TYPE.ARRAY);
 displayResultsGlobal.call({ answers: [1, 5, 3, 9, 6, 1] }, TYPE.STRING);
+
+// CODING CHALLENGE #2
+
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+
+  document
+    .querySelector("body")
+    .addEventListener("click", () => (header.style.color = "blue"));
+})();
