@@ -219,7 +219,7 @@ runOnce(); // ❌
   console.log("This will never run again");
   const isPrivate = 23;
 })(); // ✅ - IIFE
-console.log(isPrivate); // wouldn't work because of scope
+// console.log(isPrivate); // wouldn't work because of scope
 
 (() => console.log("This will also never run again"))();
 
@@ -229,3 +229,22 @@ console.log(isPrivate); // wouldn't work because of scope
 }
 // console.log(isPrivate); // wouldn't work ✅
 console.log(notPrivate); // would work ❌
+
+// ⬇️ Closures
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
