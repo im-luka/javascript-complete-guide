@@ -133,7 +133,7 @@ lufthansa.book(239, "lux dule");
 lufthansa.book(123, "john smith");
 
 const eurowings = {
-  name: "Eurowings",
+  airline: "Eurowings",
   iataCode: "EW",
   bookings: [],
 };
@@ -159,8 +159,137 @@ book.call(swiss, 583, "Jerry Cooper");
 console.log(swiss);
 
 // Apply method
+// the same as Call method but uses array of data instead comma separated data
 const flightData = [583, "George Cooper"];
 book.apply(swiss, flightData);
 console.log(swiss);
 
 book.call(swiss, ...flightData);
+
+// ⬇️ Bind Method
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, "Steven Williams");
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23("luka dule");
+bookEW23("john smith");
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+
+// keyword 'this' is binded to doc.queSel object ("parent element")
+document
+  .querySelector(".buy")
+  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// Partial Applications
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+// looks like this -> const addVAT = (value) => value + value * 0.23
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+// Challenge
+const addTAX = (rate) => (value) => value + value * rate;
+console.log(addTAX(0.23)(23));
+
+// ⬇️ IIFE -> Immediately Invoked Function Expressions
+// function that we need only once. execute it & function disappears
+
+const runOnce = function () {
+  console.log("This will never run again");
+};
+runOnce(); // ❌
+
+(function () {
+  console.log("This will never run again");
+  const isPrivate = 23;
+})(); // ✅ - IIFE
+// console.log(isPrivate); // wouldn't work because of scope
+
+(() => console.log("This will also never run again"))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+// console.log(isPrivate); // wouldn't work ✅
+console.log(notPrivate); // would work ❌
+
+// ⬇️ Closures
+// 🚶🏼‍♂️ - 🎒 - 📑
+// function - closure - variables
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+// ⬇️ Closure Examples
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+// Re-assigning f function
+h();
+f();
+console.dir(f);
+
+// Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(() => {
+    console.log(`We are now boarding all ${n} passengers! 🚎`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+const perGroup = 1000;
+boardPassengers(180, 3);
