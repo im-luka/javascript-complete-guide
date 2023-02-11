@@ -159,6 +159,7 @@ book.call(swiss, 583, "Jerry Cooper");
 console.log(swiss);
 
 // Apply method
+// the same as Call method but uses array of data instead comma separated data
 const flightData = [583, "George Cooper"];
 book.apply(swiss, flightData);
 console.log(swiss);
