@@ -436,3 +436,25 @@ const deposit = (mov) => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.filter(deposit));
 console.log(movements.every(deposit));
+
+// ⬇️ '.flat()' and '.flatMap()' Methods
+
+const nums = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(nums);
+console.log(nums.flat());
+
+const numsDeep = [[[1, 2], 3], [4, [5, [6, 10]]], 7, 8];
+console.log(numsDeep.flat(3));
+
+// '.flat()'
+const overallBalance = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+// '.flatMap()'
+const overallBalanceMap = accounts
+  .flatMap((acc) => acc.movements) // only goes 1 level deep
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalanceMap);
