@@ -100,3 +100,15 @@ console.log([...arr, ...arr2]); // the same as concat
 
 // JOIN
 console.log(letters.join(" - "));
+
+// ⬇️ '.at()' Method
+
+const atArray = [23, 11, 54];
+console.log(atArray[0]);
+console.log(atArray.at(0));
+
+console.log(atArray[atArray.length - 1]);
+console.log(atArray.slice(-1)[0]);
+console.log(atArray.at(-1));
+console.log("luka".at(0));
+console.log("luka".at(-1));
