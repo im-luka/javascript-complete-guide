@@ -35,3 +35,14 @@ const calcAverageHumanAge = (dogs) => {
 };
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// CODING CHALLENGE #2
+console.log("----- CHALLENGE #4 -----");
+
+const calcAverageHumanAgeArrow = (dogs) =>
+  dogs
+    .map((dog) => (dog <= 2 ? dog * 2 : 16 + dog * 4))
+    .filter((dog) => dog > 18)
+    .reduce((acc, dog, _, arr) => acc + dog / arr.length, 0);
+console.log(calcAverageHumanAgeArrow([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAgeArrow([16, 6, 10, 5, 6, 1, 4]));
