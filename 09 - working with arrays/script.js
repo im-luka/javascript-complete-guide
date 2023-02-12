@@ -169,3 +169,5 @@ console.log(currenciesUnique);
 currenciesUnique.forEach((value, _, map) => {
   console.log(`${value}: ${value}`);
 });
+
+// ⬇️ Data Transformations: '.map()', '.filter()' and '.reduce()'
