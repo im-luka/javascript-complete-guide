@@ -55,10 +55,12 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-const displayMovements = (movements) => {
+const displayMovements = (movements, sort = false) => {
   containerMovements.innerHTML = "";
 
-  movements.forEach((mov, i) => {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
       <div class="movements__row">
@@ -215,6 +217,14 @@ btnClose.addEventListener("click", (event) => {
   }
 
   inputCloseUsername.value = inputClosePin.value = "";
+});
+
+let isSorting = false;
+btnSort.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  isSorting = !isSorting;
+  displayMovements(currentAccount.movements, isSorting);
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -458,3 +468,40 @@ const overallBalanceMap = accounts
   .flatMap((acc) => acc.movements) // only goes 1 level deep
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalanceMap);
+
+// ⬇️ Sorting Arrays
+// sorting is based on strings
+
+// Strings
+const owners = ["Mike", "Zach", "Adam", "Martha"];
+console.log(owners.sort()); // mutates original array
+console.log(owners);
+
+// Numbers
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// console.log(movements.sort());
+
+// return < 0 -> A is before B (keep order)
+// return > 0 -> B is before A (switch order)
+
+// Ascending
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (a < b) return -1;
+});
+console.log(movements);
+
+// Descending
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (a < b) return 1;
+});
+console.log(movements);
+
+// Improved version
+
+// Ascending
+movements.sort((a, b) => a - b);
+
+// Descending
+movements.sort((a, b) => b - a);
