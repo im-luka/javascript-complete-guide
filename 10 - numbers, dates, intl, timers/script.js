@@ -88,8 +88,14 @@ const formatMovementDate = (date, locale) => {
   return new Intl.DateTimeFormat(locale).format(date);
 };
 
+const formatCurrency = (value, locale, currency) =>
+  new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+  }).format(value);
+
 const displayMovements = (
-  { movements, movementsDates, locale },
+  { movements, movementsDates, locale, currency },
   sort = false
 ) => {
   containerMovements.innerHTML = "";
@@ -100,6 +106,7 @@ const displayMovements = (
     const type = mov > 0 ? "deposit" : "withdrawal";
     const date = new Date(movementsDates[i]);
     const displayDate = formatMovementDate(date, locale);
+    const formattedMovement = formatCurrency(mov, locale, currency);
 
     const html = `
       <div class="movements__row">
@@ -107,7 +114,7 @@ const displayMovements = (
       i + 1
     } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMovement}</div>
       </div>
     `;
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -116,26 +123,30 @@ const displayMovements = (
 
 const calcDisplayBalance = (acc) => {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+  labelBalance.textContent = formatCurrency(
+    acc.balance,
+    acc.locale,
+    acc.currency
+  );
 };
 
-const calcDisplaySummary = ({ movements, interestRate }) => {
+const calcDisplaySummary = ({ movements, interestRate, locale, currency }) => {
   const incomes = movements
     .filter((mov) => mov > 0)
     .reduce((acc, curr) => acc + curr, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCurrency(incomes, locale, currency);
 
   const out = movements
     .filter((mov) => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formatCurrency(Math.abs(out), locale, currency);
 
   const interest = movements
     .filter((mov) => mov > 0)
     .map((deposit) => (deposit * interestRate) / 100)
     .filter((int, _, arr) => int >= 1) // deposits bigger than 1
     .reduce((acc, curr) => acc + curr, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCurrency(interest, locale, currency);
 };
 
 const createUsernames = (accounts) => {
@@ -519,3 +530,25 @@ const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 4));
 console.log(days1);
 
 // ⬇️ Internationalizing Dates (Intl)
+// in the app
+
+// ⬇️ Internationalizing Numbers (Intl)
+
+const nmb = 3884764.23;
+
+const options = {
+  // style: "unit",
+  // unit: "celsius",
+  // unit: "mile-per-hour",
+  style: "currency",
+  currency: "EUR",
+  // useGrouping: false,
+};
+
+console.log("US: ", new Intl.NumberFormat("en-US", options).format(nmb));
+console.log("Germany: ", new Intl.NumberFormat("de-DE", options).format(nmb));
+console.log("Syria: ", new Intl.NumberFormat("ar-SY", options).format(nmb));
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language, options).format(nmb)
+);
