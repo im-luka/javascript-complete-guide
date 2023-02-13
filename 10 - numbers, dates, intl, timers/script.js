@@ -370,3 +370,39 @@ console.log(PI);
 
 console.log(Number("230_000")); // not working
 console.log(parseInt("230_000"));
+
+// ⬇️ Working with BigInt
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(4857385733485634895734895793745983745n);
+console.log(BigInt(48383302));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(2635426345267345236745236452376452n * 100000000n);
+
+const huge = 234872389472384972343434398n;
+const num = 23;
+// console.log(huge * num); // not working - can't compare bigint and normal num
+console.log(huge * BigInt(num));
+
+// Exceptions
+console.log(20 > 15);
+console.log(20n === 20); // false
+console.log(typeof 20n);
+console.log(20n == 20); // true
+
+console.log(huge + " is REALLY big!!!");
+
+// console.log(Math.sqrt(16n)); // not working
+
+// Divisions
+console.log(10n / 3n);
+console.log(11n / 3n);
+console.log(10 / 3);
