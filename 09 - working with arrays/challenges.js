@@ -36,8 +36,8 @@ const calcAverageHumanAge = (dogs) => {
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
-// CODING CHALLENGE #2
-console.log("----- CHALLENGE #4 -----");
+// CODING CHALLENGE #3
+console.log("----- CHALLENGE #3 -----");
 
 const calcAverageHumanAgeArrow = (dogs) =>
   dogs
@@ -46,3 +46,66 @@ const calcAverageHumanAgeArrow = (dogs) =>
     .reduce((acc, dog, _, arr) => acc + dog / arr.length, 0);
 console.log(calcAverageHumanAgeArrow([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAgeArrow([16, 6, 10, 5, 6, 1, 4]));
+
+// CODING CHALLENGE #4
+console.log("----- CHALLENGE #4 -----");
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+console.log(dogs);
+
+const checkOkFoodAmount = ({ curFood, recommendedFood }) =>
+  curFood >= recommendedFood * 0.9 && curFood <= recommendedFood * 1.1;
+
+// 1.
+dogs.forEach((dog) => {
+  dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28);
+});
+console.log(dogs);
+
+// 2.
+const sarahsDog = dogs.find((dog) => dog.owners.includes("Sarah"));
+console.log(
+  `Sarah's dog is eating too ${
+    sarahsDog.curFood < sarahsDog.recommendedFood ? "little" : "much"
+  }`
+);
+
+// 3.
+const getOwners = (eatCondition) =>
+  dogs.filter(eatCondition).flatMap((dog) => dog.owners);
+
+const ownersEatTooMuch = getOwners((dog) => dog.curFood > dog.recommendedFood);
+console.log(ownersEatTooMuch);
+
+const ownersEatTooLittle = getOwners(
+  (dog) => dog.curFood < dog.recommendedFood
+);
+console.log(ownersEatTooLittle);
+
+// 4.
+console.log(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little!`);
+
+// 5.
+console.log(
+  `Dog eating just right: ${dogs.some(
+    (dog) => dog.curFood === dog.recommendedFood
+  )}`
+);
+
+// 6.
+console.log(`Dog eating ok: ${dogs.some(checkOkFoodAmount)}`);
+
+// 7.
+const okDogs = dogs.filter(checkOkFoodAmount);
+console.log(okDogs);
+
+// 8.
+const shallowDogs = [...dogs];
+shallowDogs.sort((a, b) => a.recommendedFood - b.recommendedFood);
+console.log(shallowDogs);
