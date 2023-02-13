@@ -176,14 +176,38 @@ const resetUI = () => {
   labelWelcome.textContent = "Log in to get started";
 };
 
+const startLogoutTimer = () => {
+  const tick = () => {
+    const min = Math.trunc(time / 60)
+      .toString()
+      .padStart(2, 0);
+    const sec = (time % 60).toString().padStart(2, 0);
+
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When 0 seconds, stop timer and log user out
+    if (time === 0) {
+      clearInterval(timer);
+      resetUI();
+    }
+
+    // Decrease 1s
+    time--;
+  };
+
+  // Set time to 5 minutes
+  let time = 120;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 // Event Handlers
 
-let currentAccount;
-
-// TODO: fake logging in
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+let currentAccount, timer;
 
 btnLogin.addEventListener("click", (event) => {
   // Prevent form from submitting
@@ -231,6 +255,12 @@ btnLogin.addEventListener("click", (event) => {
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
 
+    // Timer
+    if (timer) {
+      clearInterval(timer);
+    }
+    timer = startLogoutTimer();
+
     updateUI(currentAccount);
   }
 });
@@ -260,6 +290,10 @@ btnTransfer.addEventListener("click", (event) => {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
   }
 });
 
@@ -281,7 +315,11 @@ btnLoan.addEventListener("click", (event) => {
 
       // Update UI
       updateUI(currentAccount);
-    }, 2000);
+
+      // Reset timer
+      clearInterval(timer);
+      timer = startLogoutTimer();
+    }, 2500);
   }
   inputLoanAmount.value = "";
 });
@@ -574,4 +612,4 @@ if (ingredients.includes("spinach")) {
 setInterval(() => {
   const now = new Date();
   console.log(now);
-}, 1000);
+}, 10000);
