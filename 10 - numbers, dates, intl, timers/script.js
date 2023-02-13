@@ -67,18 +67,25 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-const displayMovements = (movements, sort = false) => {
+const displayMovements = ({ movements, movementsDates }, sort = false) => {
   containerMovements.innerHTML = "";
 
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdrawal";
+    const date = new Date(movementsDates[i]);
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    const displayDate = `${day}/${month}/${year}`;
+
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
+        <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
@@ -123,7 +130,7 @@ createUsernames(accounts);
 
 const updateUI = (account) => {
   // Display movements
-  displayMovements(account.movements);
+  displayMovements(account);
 
   // Display balance
   calcDisplayBalance(account);
@@ -140,6 +147,11 @@ const resetUI = () => {
 // Event Handlers
 
 let currentAccount;
+
+// TODO: fake logging in
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
 
 btnLogin.addEventListener("click", (event) => {
   // Prevent form from submitting
@@ -159,6 +171,15 @@ btnLogin.addEventListener("click", (event) => {
       currentAccount.owner.split(" ")[0]
     }`;
     containerApp.style.opacity = 100;
+
+    // Create current date and time
+    const now = new Date();
+    const day = `${now.getDate()}`.padStart(2, 0);
+    const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    const year = now.getFullYear();
+    const hour = `${now.getHours()}`.padStart(2, 0);
+    const minutes = `${now.getMinutes()}`.padStart(2, 0);
+    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minutes}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = "";
@@ -187,6 +208,10 @@ btnTransfer.addEventListener("click", (event) => {
     currentAccount.movements.push(-amount);
     receiverAccount.movements.push(amount);
 
+    // Add transfer date
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAccount.movementsDates.push(new Date().toISOString());
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -203,6 +228,9 @@ btnLoan.addEventListener("click", (event) => {
   ) {
     // Add movement
     currentAccount.movements.push(amount);
+
+    // Add loan date
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
@@ -236,7 +264,7 @@ btnSort.addEventListener("click", (event) => {
   event.preventDefault();
 
   isSorting = !isSorting;
-  displayMovements(currentAccount.movements, isSorting);
+  displayMovements(currentAccount, isSorting);
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -410,8 +438,8 @@ console.log(10 / 3);
 // ⬇️ Creating Dates
 
 // Create a date
-const now = new Date();
-console.log(now);
+const rightNow = new Date();
+console.log(rightNow);
 
 console.log(new Date("Feb 13 2023 21:44:10"));
 console.log(new Date("December 25, 2015")); // could be unreliable, bad practice
