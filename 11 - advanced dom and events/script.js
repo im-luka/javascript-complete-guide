@@ -126,3 +126,36 @@ logo.classList.contains("c");
 
 // don't use - overrides existing classes. dangerous!!
 // logo.className = "new";
+
+// ⬇️ Implementing Smooth Scrolling
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", (event) => {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(event.target.getBoundingClientRect());
+
+  console.log("Current scroll (X/Y)", window.scrollX, window.scrollY);
+
+  console.log(
+    "height/width viewport",
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.scrollX,
+  //   s1coords.top + window.scrollY
+  // );
+  window.scrollTo({
+    left: s1coords.left + window.scrollX,
+    top: s1coords.top + window.scrollY,
+    behavior: "smooth",
+  }); // older way
+
+  section1.scrollIntoView({ behavior: "smooth" }); // modern and easier way
+});
