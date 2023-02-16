@@ -72,3 +72,57 @@ document.querySelector(".btn--close-cookie").addEventListener("click", () => {
   message.remove(); // remove element from DOM
   message.parentElement.removeChild(message); // the old way of removing - outdated
 });
+
+// ⬇️ Styles, Attributes and Classes
+
+// Styles
+// inline styles in DOM
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+console.log(message.style.height); // can't read styles like this
+console.log(message.style.backgroundColor); // can only read inline styles
+
+console.log(getComputedStyle(message)); // all of the css styles
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
+
+// :root is equivalent to document.documentElement
+document.documentElement.style.setProperty("--color-primary", "orangered");
+
+// Attributes
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.className);
+
+logo.alt = "Beautiful minimalist logo";
+console.log(logo.alt);
+
+// Non-standard
+console.log(logo.designer); // can't read attributes that are not html standard
+console.log(logo.getAttribute("designer")); // works!
+logo.setAttribute("company", "Recode X");
+console.log(logo.getAttribute("company")); // works!
+
+// src
+console.log(logo.src); // absolute
+console.log(logo.getAttribute("src")); // relative
+
+const link = document.querySelector(".nav__link--btn");
+console.log(link.href);
+console.log(link.getAttribute("href"));
+
+// Data attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add("c", "l", "a");
+logo.classList.remove("c", "l");
+logo.classList.toggle("c");
+logo.classList.contains("c");
+
+// don't use - overrides existing classes. dangerous!!
+// logo.className = "new";
