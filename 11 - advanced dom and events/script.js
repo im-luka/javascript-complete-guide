@@ -186,24 +186,46 @@ const randomColor = () =>
   `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
 
 document.querySelector(".nav__link").addEventListener("click", function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log("LINK", e.target, e.currentTarget);
-  console.log(e.currentTarget === this);
-
+  // this.style.backgroundColor = randomColor();
+  // console.log("LINK", e.target, e.currentTarget);
+  // console.log(e.currentTarget === this);
   // Stop propagation
   // e.stopPropagation(); // -> not good idea in practice
 });
 
 document.querySelector(".nav__links").addEventListener("click", function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log("CONTAINER", e.target, e.currentTarget);
+  // this.style.backgroundColor = randomColor();
+  // console.log("CONTAINER", e.target, e.currentTarget);
 });
 
 document.querySelector(".nav").addEventListener(
   "click",
   function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log("NAV", e.target, e.currentTarget);
+    // this.style.backgroundColor = randomColor();
+    // console.log("NAV", e.target, e.currentTarget);
   },
   true
 );
+
+// ⬇️ Event Delegation: Implementing Page Navigation
+
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute("href");
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// }); // -> not optimized way
+
+// 1. add event listener to common parent element
+// 2. determine what element originated the event
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
+});
