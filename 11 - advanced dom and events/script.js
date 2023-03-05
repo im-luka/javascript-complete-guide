@@ -91,7 +91,7 @@ message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
 
 // :root is equivalent to document.documentElement
-document.documentElement.style.setProperty("--color-primary", "orangered");
+document.documentElement.style.setProperty("--color-primary", "lightgreen");
 
 // Attributes
 const logo = document.querySelector(".nav__logo");
@@ -260,4 +260,27 @@ console.log(h1.parentElement.children);
   if (el !== h1) {
     el.style.transform = "scale(1)"; // scale(0.5)
   }
+});
+
+// ⬇️ Building a Tabbed Component
+
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+tabsContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  if (!clicked) {
+    return;
+  }
+
+  // Active tab
+  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+  clicked.classList.add("operations__tab--active");
+
+  // Activate content area
+  tabsContent.forEach((c) => c.classList.remove("operations__content--active"));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
 });
