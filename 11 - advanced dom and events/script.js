@@ -91,7 +91,7 @@ message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
 
 // :root is equivalent to document.documentElement
-document.documentElement.style.setProperty("--color-primary", "orangered");
+document.documentElement.style.setProperty("--color-primary", "lightgreen");
 
 // Attributes
 const logo = document.querySelector(".nav__logo");
@@ -158,4 +158,129 @@ btnScrollTo.addEventListener("click", (event) => {
   }); // older way
 
   section1.scrollIntoView({ behavior: "smooth" }); // modern and easier way
+});
+
+// ⬇️ Types of Events and Event Handlers
+
+const h1 = document.querySelector("h1");
+
+const alertH1 = (e) => {
+  // alert("addEventListener: Great! You are reading the heading");
+};
+
+// h1.onmouseenter = alertH1;
+
+h1.addEventListener("mouseenter", alertH1);
+
+setTimeout(() => {
+  h1.removeEventListener("mouseenter", alertH1);
+}, 3000);
+
+// ⬇️ Event Propagation: Bubbling and Capturing
+
+// ⬇️ Event Propagation
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+document.querySelector(".nav__link").addEventListener("click", function (e) {
+  // this.style.backgroundColor = randomColor();
+  // console.log("LINK", e.target, e.currentTarget);
+  // console.log(e.currentTarget === this);
+  // Stop propagation
+  // e.stopPropagation(); // -> not good idea in practice
+});
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  // this.style.backgroundColor = randomColor();
+  // console.log("CONTAINER", e.target, e.currentTarget);
+});
+
+document.querySelector(".nav").addEventListener(
+  "click",
+  function (e) {
+    // this.style.backgroundColor = randomColor();
+    // console.log("NAV", e.target, e.currentTarget);
+  },
+  true
+);
+
+// ⬇️ Event Delegation: Implementing Page Navigation
+
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute("href");
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// }); // -> not optimized way
+
+// 1. add event listener to common parent element
+// 2. determine what element originated the event
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
+});
+
+// ⬇️ DOM Traversing
+
+// const h1 = document.querySelector("h1");
+
+// Going downwards: child
+console.log(h1.querySelectorAll(".highlight"));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = "white";
+h1.lastElementChild.style.color = "orangered";
+
+// Going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest(".header").style.background = "unset"; // var(--gradient-secondary)
+h1.closest("h1").style.background = "unset"; // var(--gradient-primary)
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) {
+    el.style.transform = "scale(1)"; // scale(0.5)
+  }
+});
+
+// ⬇️ Building a Tabbed Component
+
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+tabsContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  if (!clicked) {
+    return;
+  }
+
+  // Active tab
+  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+  clicked.classList.add("operations__tab--active");
+
+  // Activate content area
+  tabsContent.forEach((c) => c.classList.remove("operations__content--active"));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
 });
