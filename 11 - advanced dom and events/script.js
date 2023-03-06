@@ -507,3 +507,20 @@ const implementSlider = () => {
   });
 };
 implementSlider();
+
+// ⬇️ Lifecycle DOM Events
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  console.log("HTML parsed and DOM tree built!");
+});
+
+window.addEventListener("load", (e) => {
+  console.log("Page fully loaded", e);
+});
+
+// beforeunload - pop up window when user tries to leave the page (or refresh the page) - don't overuse
+// window.addEventListener("beforeunload", function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = "";
+// });
