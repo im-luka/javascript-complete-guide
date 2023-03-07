@@ -28,3 +28,8 @@ Resources are project based and cover all of the main topics to help you start a
 
 ---
 
+#### *11 - bankist app*
+
+![bankist-app](https://user-images.githubusercontent.com/46372998/223345082-5e08d090-70e1-4647-b498-b20a0a7aed93.png)
+
+---
