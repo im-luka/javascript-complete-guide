@@ -28,6 +28,12 @@ Resources are project based and cover all of the main topics to help you start a
 
 ---
 
+#### *09/10 - financial tracker*
+
+![financial-tracker](https://user-images.githubusercontent.com/46372998/223345999-fcf7d8b6-7a0a-4d17-9e38-059285d5eb5b.png)
+
+---
+
 #### *11 - bankist app*
 
 ![bankist-app](https://user-images.githubusercontent.com/46372998/223345082-5e08d090-70e1-4647-b498-b20a0a7aed93.png)
