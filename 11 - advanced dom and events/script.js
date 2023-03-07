@@ -524,3 +524,22 @@ window.addEventListener("load", (e) => {
 //   console.log(e);
 //   e.returnValue = "";
 // });
+
+// ⬇️ Efficient Script Loading - defer and async
+
+// AT THE END OF THE BODY
+// ➡️ great solution
+// ➡️ scripting is waiting for the html content to load and is then executed
+// ➡️ old browser does not support async and defer - use this method instead
+
+// IN THE HEAD
+
+// ASYNC
+// ➡️ script is fetching asynchronously with html, then when the script is loaded, parsing of html is waiting for a script to be run (scripts are executed immediately when they are fetched)
+// ➡️ DOMContentLoaded waits for all scripts to be loaded, except for async scripts
+// ➡️ scripts are not guaranteed to execute in order
+
+// DEFER
+// ➡️ scripts are fetched asynchronously and are executed after the html is completely parsed (when fetched, scripts are still waiting for html to be loaded)
+// ➡️ DOMContentLoaded event fires after defer script is executed
+// ➡️ scripts are executed in order
