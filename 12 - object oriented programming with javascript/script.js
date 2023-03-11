@@ -295,3 +295,34 @@ const martha = new StudentCl("Martha Jones", 2012, "Computer Science");
 console.log(martha);
 martha.introduce();
 martha.calcAge();
+
+// ⬇️ Inheritance Between Classes: Object.create()
+
+const PersonPrototype = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steve = Object.create(PersonPrototype);
+
+const StudentPrototype = Object.create(PersonPrototype);
+
+StudentPrototype.init = function (firstName, birthYear, course) {
+  PersonPrototype.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentPrototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentPrototype);
+jay.init("Jay", 2010, "Computer Science");
+console.log(jay);
+jay.introduce();
