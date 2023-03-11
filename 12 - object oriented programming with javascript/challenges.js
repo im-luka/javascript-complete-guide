@@ -42,6 +42,7 @@ class CarCl {
   brake() {
     this.speed -= 5;
     console.log(`${this.mark} braking 🛑 new speed is ${this.speed}`);
+    return this;
   }
 
   get speedUS() {
@@ -91,3 +92,40 @@ tesla.accelerate();
 tesla.brake();
 tesla.chargeBattery(90);
 tesla.accelerate();
+
+// CODING CHALLENGE #4
+
+class EVCl extends CarCl {
+  #charge;
+
+  constructor(mark, speed, charge) {
+    super(mark, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge *= 0.9;
+    console.log(
+      `${this.mark} accelerating ⚡️ new speed is ${
+        this.speed
+      } km/h with a charge of ${this.#charge}%`
+    );
+    return this;
+  }
+}
+
+const teslaCl = new EVCl("Tesla", 120, 23);
+console.log(teslaCl);
+teslaCl
+  .accelerate()
+  .accelerate()
+  .brake()
+  .accelerate()
+  .chargeBattery(90)
+  .accelerate();
