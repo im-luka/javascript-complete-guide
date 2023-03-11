@@ -134,3 +134,42 @@ console.log(account.latest);
 // call method as property by using set
 account.latest = 50;
 console.log(account.movements);
+
+// ⬇️ Static Methods
+
+// available on classes and not on instances
+
+console.log(Array.from(document.querySelectorAll("h1")));
+console.log(Number.parseFloat(12));
+
+// static methods on constructor functions
+const House = function (location, color) {
+  this.location = location;
+  this.color = color;
+};
+
+const house1 = new House("Zagreb", "white");
+
+House.size = function () {
+  console.log("Big house 🏠");
+  console.log(this);
+};
+
+House.size();
+
+// static method on es6 classes
+class HouseCl {
+  constructor(location, color) {
+    this.location = location;
+    this.color = color;
+  }
+
+  static size() {
+    console.log("Big house 🏠");
+    console.log(this);
+  }
+}
+
+const house2 = new HouseCl("Rijeka", "gray");
+
+HouseCl.size();
