@@ -364,16 +364,19 @@ class Account {
 
   deposit(value) {
     this.#movements.push(value);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   requestLoan(val) {
     if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log("Loan approved");
+      return this;
     }
   }
 
@@ -406,3 +409,9 @@ console.log(acc1);
 // console.log(acc1.#approveLoan(100));
 
 Account.helper();
+
+// ⬇️ Chaining Methods
+
+// return this; in method to make it chainable
+acc1.deposit(300).deposit(400).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
