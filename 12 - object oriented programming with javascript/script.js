@@ -53,3 +53,28 @@ console.log(luka.species, matilda.species);
 
 console.log(luka.hasOwnProperty("firstName"));
 console.log(luka.hasOwnProperty("species"));
+
+// ⬇️ Prototype Inheritance on Built-In Objects
+
+console.log(luka.__proto__);
+// Object.prototype (top of prototype chain)
+console.log(luka.__proto__.__proto__);
+console.log(luka.__proto__.__proto__.__proto__);
+
+console.log(Person.prototype.constructor);
+
+const arr = [3, 5, 7, 8, 11, 6, 4, 22, 1, 3, 7, 11]; // new Array = []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+// extending built-in object is not a good idea
+console.log(arr.unique());
+
+const h1 = document.querySelector("h1");
+console.dir(h1);
+console.dir((x) => x + 1);
