@@ -61,3 +61,33 @@ car3.brake();
 console.log(car3.speedUS);
 car3.speedUS = 200;
 console.log(car3);
+
+// CODING CHALLENGE #3
+
+const EV = function (mark, speed, charge) {
+  Car.call(this, mark, speed);
+  this.charge = charge;
+};
+
+EV.prototype = Object.create(Car.prototype);
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+  console.log(`Battery charged to ${this.charge}`);
+};
+
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge *= 0.9;
+  console.log(
+    `${this.mark} going at ${this.speed} km/h with a charge of ${this.charge}%`
+  );
+};
+
+const tesla = new EV("Tesla", 100, 50);
+console.log(tesla);
+tesla.accelerate();
+tesla.accelerate();
+tesla.brake();
+tesla.chargeBattery(90);
+tesla.accelerate();
