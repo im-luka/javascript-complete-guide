@@ -198,3 +198,220 @@ console.log(steven.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init("Sarah", 1979);
 sarah.calcAge();
+
+// ⬇️ Inheritance Between "Classes": Constructor Functions
+
+const Human = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Human.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Human.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// linking prototypes
+Student.prototype = Object.create(Human.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student("Mike", 2020, "Computer Science");
+mike.introduce();
+mike.calcAge();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Human);
+console.log(mike instanceof Object);
+
+Student.prototype.constructor = Student;
+console.log(Student.prototype.constructor);
+
+// ⬇️ Inheritance Between Classes: ES6 Classes
+
+class HumanCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Instance methods
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(" ")) {
+      this._fullName = name;
+    } else {
+      alert(`${name} is not a full name!`);
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // Static methods
+  static hey() {
+    console.log("Hey there 👋🏼");
+  }
+}
+
+class StudentCl extends HumanCl {
+  constructor(fullName, birthYear, course) {
+    // Always needs to happen first!
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(`Im ${2037 - this.birthYear} years old but i feel older`);
+  }
+}
+
+const martha = new StudentCl("Martha Jones", 2012, "Computer Science");
+console.log(martha);
+martha.introduce();
+martha.calcAge();
+
+// ⬇️ Inheritance Between Classes: Object.create()
+
+const PersonPrototype = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steve = Object.create(PersonPrototype);
+
+const StudentPrototype = Object.create(PersonPrototype);
+
+StudentPrototype.init = function (firstName, birthYear, course) {
+  PersonPrototype.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentPrototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentPrototype);
+jay.init("Jay", 2010, "Computer Science");
+console.log(jay);
+jay.introduce();
+
+// ⬇️ Another Class Example
+// ⬇️ Encapsulation: Protected Properties and Methods
+// ⬇️ Encapsulation: Private Class Fields and Methods
+
+// 1) Public fields
+// 2) Private fields
+// 3) Public methods
+// 4) Private methods
+// (there is also the static version)
+
+class Account {
+  // 1) Public fields (instances)
+  locale = navigator.language;
+
+  // 2) Private fields (instances)
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    // protected property
+    this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+
+  // 3) Public methods
+  // public interface
+  getMovements() {
+    return this.#movements;
+  }
+
+  deposit(value) {
+    this.#movements.push(value);
+    return this;
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+    return this;
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log("Loan approved");
+      return this;
+    }
+  }
+
+  static helper() {
+    console.log("Helper fnc");
+  }
+
+  // 4) Private methods
+  #approveLoan(val) {
+    return true;
+  }
+}
+
+const acc1 = new Account("Mike", "EUR", 1111);
+console.log(acc1);
+
+// acc1._movements.push(250);
+// acc1._movements.push(-140);
+acc1.deposit(250);
+acc1.withdraw(140);
+acc1.requestLoan(1000);
+// acc1.approveLoan(1000);
+console.log(acc1.getMovements());
+
+console.log(acc1);
+// console.log(acc1.pin);
+
+// console.log(acc1.#movements);
+// console.log(acc1.#pin);
+// console.log(acc1.#approveLoan(100));
+
+Account.helper();
+
+// ⬇️ Chaining Methods
+
+// return this; in method to make it chainable
+acc1.deposit(300).deposit(400).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
