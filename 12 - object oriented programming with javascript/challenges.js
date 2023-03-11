@@ -25,3 +25,39 @@ car2.brake();
 car2.brake();
 car2.accelerate();
 car2.brake();
+
+// CODING CHALLENGE #2
+
+class CarCl {
+  constructor(mark, speed) {
+    this.mark = mark;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.mark} accelerating ⚡️ new speed is ${this.speed}`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.mark} braking 🛑 new speed is ${this.speed}`);
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(input) {
+    this.speed = input * 1.6;
+  }
+}
+
+const car3 = new CarCl("ford", 70);
+car3.brake();
+car3.accelerate();
+car3.accelerate();
+car3.brake();
+console.log(car3.speedUS);
+car3.speedUS = 200;
+console.log(car3);
