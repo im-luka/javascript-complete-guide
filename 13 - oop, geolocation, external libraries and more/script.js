@@ -424,3 +424,15 @@ class App {
 }
 
 const app = new App();
+
+// ⬇️ Final Consideration
+
+// edit, delete, delete all workout/workouts
+// sort workouts by certain fields
+// re-build running and cycling objects
+// more realistic error messages
+
+// ability to position the map to show all workouts
+// ability to draw lines and shapes instead of just points
+// geocode location from the coordinates
+// display weather for workout time and place
