@@ -98,3 +98,11 @@ inputType.addEventListener("change", (e) => {
   inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
   inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
 });
+
+// ⬇️ Project Architecture
+
+// class Workout
+// child class Running
+// child class Cycling
+
+// class App
