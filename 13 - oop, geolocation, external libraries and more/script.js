@@ -34,3 +34,15 @@ const inputElevation = document.querySelector(".form__input--elevation");
 // 4. Architecture
 
 // DEVELOPMENT
+
+// ⬇️ Using the Geolocation API
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const { latitude, longitude } = position.coords;
+      console.log(latitude, longitude);
+    },
+    () => alert("Could not get your position.")
+  );
+}
