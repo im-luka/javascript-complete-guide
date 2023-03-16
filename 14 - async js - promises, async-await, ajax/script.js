@@ -59,7 +59,7 @@ const renderCountry = (data, className = "") => {
       </article>
     `;
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 // const getCountryAndNeighbor = (country) => {
@@ -186,7 +186,7 @@ const renderCountry = (data, className = "") => {
 
 const renderError = (msg) => {
   countriesContainer.insertAdjacentText("beforeend", msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 const getJSON = (url, errorMsg = "Something went wrong") => {
