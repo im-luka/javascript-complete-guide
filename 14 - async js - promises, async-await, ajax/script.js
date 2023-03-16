@@ -257,3 +257,16 @@ const getCountryData = (country) =>
 btn.addEventListener("click", () => {
   getCountryData("australia");
 });
+
+// ⬇️ The Event Loop in Practice
+
+console.log("Test start");
+setTimeout(() => {
+  console.log("0 sec timer");
+}, 0);
+Promise.resolve("Resolved promise 1").then((response) => console.log(response));
+Promise.resolve("Resolved promise 2").then((response) => {
+  for (let i = 0; i < 100000000; i++) {}
+  console.log(response);
+});
+console.log("Test end");
