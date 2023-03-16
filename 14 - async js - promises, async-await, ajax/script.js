@@ -131,9 +131,30 @@ const renderCountry = (data, className = "") => {
 //     });
 // };
 
+// const getCountryData = (country) =>
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then((response) => response.json())
+//     .then((data) => renderCountry(data[0]));
+
+// getCountryData("croatia");
+
+// ⬇️ Chaining Promises
+
 const getCountryData = (country) =>
+  // country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then((response) => response.json())
-    .then((data) => renderCountry(data[0]));
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbor = data[0].borders?.[0];
+      if (!neighbor) {
+        return;
+      }
 
-getCountryData("croatia");
+      // country 2
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+    })
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0], "neighbour"));
+
+getCountryData("switzerland");
