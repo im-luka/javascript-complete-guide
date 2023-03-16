@@ -59,7 +59,7 @@ const renderCountry = (data, className = "") => {
       </article>
     `;
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
 };
 
 // const getCountryAndNeighbor = (country) => {
@@ -140,8 +140,55 @@ const renderCountry = (data, className = "") => {
 
 // ⬇️ Chaining Promises
 
+// const getCountryData = (country) =>
+//   // country 1
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbor = data[0].borders?.[0];
+//       if (!neighbor) {
+//         return;
+//       }
+
+//       // country 2
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+//     })
+//     .then((response) => response.json())
+//     .then((data) => renderCountry(data[0], "neighbour"));
+
+// getCountryData("switzerland");
+
+// ⬇️ Handling Rejected Promises
+
+// const getCountryData = (country) =>
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(
+//       (response) => response.json(),
+//       (err) => alert(err)
+//     )
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbor = data[0].borders?.[0];
+//       if (!neighbor) {
+//         return;
+//       }
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+//     })
+//     .then(
+//       (response) => response.json(),
+//       (err) => alert(err)
+//     )
+//     .then((data) => renderCountry(data[0], "neighbour"));
+
+// better way of handling errors - in catch method
+
+const renderError = (msg) => {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+  // countriesContainer.style.opacity = 1;
+};
+
 const getCountryData = (country) =>
-  // country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then((response) => response.json())
     .then((data) => {
@@ -150,11 +197,18 @@ const getCountryData = (country) =>
       if (!neighbor) {
         return;
       }
-
-      // country 2
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
     })
     .then((response) => response.json())
-    .then((data) => renderCountry(data[0], "neighbour"));
+    .then((data) => renderCountry(data[0], "neighbour"))
+    .catch((err) => {
+      console.error(`${err} 💥💥💥💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 
-getCountryData("switzerland");
+btn.addEventListener("click", () => {
+  getCountryData("switzerland");
+});
