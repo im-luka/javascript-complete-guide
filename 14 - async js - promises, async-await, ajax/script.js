@@ -270,3 +270,49 @@ Promise.resolve("Resolved promise 2").then((response) => {
   console.log(response);
 });
 console.log("Test end");
+
+// ⬇️ Building a Simple Promise
+
+const lotteryPromise = new Promise((resolve, reject) => {
+  console.log("Lottery has started! 🔮");
+  setTimeout(() => {
+    if (Math.random() > 0.5) {
+      resolve("You WIN money 💰");
+    } else {
+      reject(new Error("You lost your money 🛑"));
+    }
+  }, 2000);
+});
+
+lotteryPromise
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// Promisifying setTimeout
+const wait = (seconds) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(1)
+  .then(() => {
+    console.log("1 second passed!");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("2 seconds passed!");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("3 seconds passed!");
+    return wait(1);
+  })
+  .then(() => {
+    console.log("4 seconds passed!");
+    return wait(1);
+  })
+  .then(() => console.log("5 seconds passed!"));
+
+Promise.resolve("abc").then((x) => console.log(x));
+Promise.reject(new Error("problem!")).catch((x) => console.error(x));
