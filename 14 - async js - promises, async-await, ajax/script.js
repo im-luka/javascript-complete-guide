@@ -1,6 +1,7 @@
 "use strict";
 
 const btn = document.querySelector(".btn-country");
+const btn2 = document.querySelector(".btn-country2");
 const countriesContainer = document.querySelector(".countries");
 
 ///////////////////////////////////////
@@ -316,3 +317,49 @@ wait(1)
 
 Promise.resolve("abc").then((x) => console.log(x));
 Promise.reject(new Error("problem!")).catch((x) => console.error(x));
+
+// ⬇️ Promisifying the Geolocation API
+
+const getPosition = () => {
+  return new Promise((resolve, reject) => {
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => resolve(position),
+    //   (err) => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+getPosition().then((pos) => console.log(pos));
+
+const whereAmI = () => {
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Problem with geocoding: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(
+        `You are in ${data.standard.city}, ${data.standard.countryname}`
+      );
+      return fetch(
+        `https://restcountries.com/v3.1/name/${data.standard.countryname}`
+      );
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Country not found ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => renderCountry(data))
+    .catch((err) => console.log(`${err.message} 💥`));
+};
+
+btn2.addEventListener("click", whereAmI);
