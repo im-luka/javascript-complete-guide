@@ -493,3 +493,55 @@ const get3Countries = async (c1, c2, c3) => {
   }
 };
 get3Countries("croatia", "portugal", "spain");
+
+// ⬇️ Other Promise Combinators: race, allSettled and any
+
+// Promise.race
+
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.com/v3.1/name/germany`),
+    getJSON(`https://restcountries.com/v3.1/name/italy`),
+    getJSON(`https://restcountries.com/v3.1/name/mexico`),
+  ]);
+  console.log(res[0]);
+})();
+
+const timeout = (sec) => {
+  return new Promise((_, reject) => {
+    setTimeout(() => {
+      reject(new Error("Request took too long..."));
+    }, sec * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://restcountries.com/v3.1/name/tanzania`),
+  timeout(5),
+])
+  .then((res) => console.log(res[0]))
+  .catch((err) => console.error(err));
+
+// Promise.allSettled
+
+Promise.allSettled([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Success"),
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// Promise.any
+
+Promise.any([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Success"),
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
