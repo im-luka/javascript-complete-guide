@@ -363,3 +363,22 @@ const whereAmI = () => {
 };
 
 btn2.addEventListener("click", whereAmI);
+
+// ⬇️ Consuming Promises with Async/Await
+
+const whereAmMe = async () => {
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  const responseGeo = await fetch(
+    `https://geocode.xyz/${lat},${lng}?geoit=json`
+  );
+  const dataGeo = await responseGeo.json();
+
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${dataGeo.country}`
+  );
+  const data = await response.json();
+  renderCountry(data[0]);
+};
+whereAmMe();
