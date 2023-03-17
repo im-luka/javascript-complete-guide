@@ -393,6 +393,35 @@ btn2.addEventListener("click", whereAmI);
 //   alert(err.message);
 // }
 
+// const whereAmMe = async () => {
+//   try {
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
+
+//     const responseGeo = await fetch(
+//       `https://geocode.xyz/${lat},${lng}?geoit=json`
+//     );
+//     if (!responseGeo.ok) {
+//       throw new Error("Problem getting location data");
+//     }
+//     const dataGeo = await responseGeo.json();
+
+//     const response = await fetch(
+//       `https://restcountries.com/v3.1/name/${dataGeo.country}`
+//     );
+//     if (!responseGeo.ok) {
+//       throw new Error("Problem getting country");
+//     }
+//     const data = await response.json();
+//     renderCountry(data[0]);
+//   } catch (err) {
+//     console.error(`something went wrong ${err}`);
+//   }
+// };
+// whereAmMe();
+
+// ⬇️ Returning Values from Async Functions
+
 const whereAmMe = async () => {
   try {
     const pos = await getPosition();
@@ -414,8 +443,30 @@ const whereAmMe = async () => {
     }
     const data = await response.json();
     renderCountry(data[0]);
+
+    return `🌎 You are in ${dataGeo.city}, ${dataGeo.country}`;
   } catch (err) {
     console.error(`something went wrong ${err}`);
+    // reject promised returned from async function
+    throw err;
   }
 };
-whereAmMe();
+
+console.log("1. Will get location");
+
+// const city = whereAmMe();
+// console.log(city);
+
+// whereAmMe()
+//   .then((city) => console.log("2.", city))
+//   .catch((err) => console.error("2.", err.message))
+//   .finally(() => console.log("3. Finished getting location"));
+
+(async function () {
+  try {
+    const city = await whereAmMe();
+    console.log("2.", city);
+  } catch (error) {
+    console.error("2.", error);
+  }
+})();
