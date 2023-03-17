@@ -366,19 +366,56 @@ btn2.addEventListener("click", whereAmI);
 
 // ⬇️ Consuming Promises with Async/Await
 
+// const whereAmMe = async () => {
+//   const pos = await getPosition();
+//   const { latitude: lat, longitude: lng } = pos.coords;
+
+//   const responseGeo = await fetch(
+//     `https://geocode.xyz/${lat},${lng}?geoit=json`
+//   );
+//   const dataGeo = await responseGeo.json();
+
+//   const response = await fetch(
+//     `https://restcountries.com/v3.1/name/${dataGeo.country}`
+//   );
+//   const data = await response.json();
+//   renderCountry(data[0]);
+// };
+// whereAmMe();
+
+// ⬇️ Error Handling with Try/Catch
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   x = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
+
 const whereAmMe = async () => {
-  const pos = await getPosition();
-  const { latitude: lat, longitude: lng } = pos.coords;
+  try {
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
 
-  const responseGeo = await fetch(
-    `https://geocode.xyz/${lat},${lng}?geoit=json`
-  );
-  const dataGeo = await responseGeo.json();
+    const responseGeo = await fetch(
+      `https://geocode.xyz/${lat},${lng}?geoit=json`
+    );
+    if (!responseGeo.ok) {
+      throw new Error("Problem getting location data");
+    }
+    const dataGeo = await responseGeo.json();
 
-  const response = await fetch(
-    `https://restcountries.com/v3.1/name/${dataGeo.country}`
-  );
-  const data = await response.json();
-  renderCountry(data[0]);
+    const response = await fetch(
+      `https://restcountries.com/v3.1/name/${dataGeo.country}`
+    );
+    if (!responseGeo.ok) {
+      throw new Error("Problem getting country");
+    }
+    const data = await response.json();
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(`something went wrong ${err}`);
+  }
 };
 whereAmMe();
