@@ -1,7 +1,13 @@
 // ⬇️ Exporting module
+// ⬇️ Importing module
 
 // export is executed before import (this file before script.js file)
-console.log("Exporting module");
+
+// blocking code
+// script.js needs to wait for fetch to complete
+// console.log("start fetching");
+// await fetch("https://jsonplaceholder.typicode.com/posts");
+// console.log("finish fetching");
 
 const shippingCost = 10;
 export const cart = [];
