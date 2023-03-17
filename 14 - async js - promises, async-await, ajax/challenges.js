@@ -76,3 +76,45 @@ createImage("img/img-1.jpg")
     currImg.style.display = "none";
   })
   .catch((err) => console.error(err));
+
+// CODING CHALLENGE #3
+
+// part #1
+
+const loadNPause = async () => {
+  try {
+    // Load img 1
+    const img = await createImage("img/img-1.jpg");
+    await wait(2);
+    img.style.display = "none";
+
+    // Load img 2
+    const img2 = await createImage("img/img-2.jpg");
+    await wait(2);
+    img2.style.display = "none";
+
+    // Load img 3
+    const img3 = await createImage("img/img-3.jpg");
+    await wait(2);
+    img3.style.display = "none";
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// part #2
+
+const loadAll = async (imgArr) => {
+  try {
+    const imgs = imgArr.map(async (img) => await createImage(img));
+    console.log(imgs);
+
+    const imgsEl = await Promise.all(imgs);
+    console.log(imgsEl);
+    imgsEl.forEach((img) => img.classList.add("parallel"));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+loadAll(["img/img-1.jpg", "img/img-2.jpg", "img/img-3.jpg"]);
