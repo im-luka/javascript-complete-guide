@@ -38,9 +38,9 @@ console.log(cart);
 console.log("start fetching");
 // blocking flow of the code
 // needs type="module" in html
-const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-const data = await res.json();
-console.log(data);
+// const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+// const data = await res.json();
+// console.log(data);
 console.log("stopped fetching");
 
 const getLastPost = async () => {
@@ -53,15 +53,15 @@ const getLastPost = async () => {
     text: data.at(-1).body,
   };
 };
-const lastPost = getLastPost();
-console.log(lastPost);
+// const lastPost = getLastPost();
+// console.log(lastPost);
 
 // not very clean
-lastPost.then((last) => console.log(last));
+// lastPost.then((last) => console.log(last));
 
 // better way
-const lastPost2 = await getLastPost();
-console.log(lastPost2);
+// const lastPost2 = await getLastPost();
+// console.log(lastPost2);
 
 // ⬇️ The Module Pattern
 
@@ -94,3 +94,29 @@ ShoppingCart2.addToCart("apple", 4);
 ShoppingCart2.addToCart("pizza", 2);
 console.log(ShoppingCart2);
 console.log(ShoppingCart2.shippingCost); // undefined
+
+// ⬇️ Introduction to NPM
+
+import cloneDeep from "lodash-es";
+
+const state = {
+  cart: [
+    { product: "bread", quantity: 5 },
+    { product: "pizza", quantity: 2 },
+  ],
+  user: { loggedIn: true },
+};
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+console.log(stateClone);
+state.user.loggedIn = false;
+console.log(stateClone);
+console.log(stateDeepClone);
+
+// ⬇️ Bundling with Parcel and NPM Scripts
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+// ⬇️ Configuring Babel and Polyfilling

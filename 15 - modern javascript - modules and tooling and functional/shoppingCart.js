@@ -22,9 +22,24 @@ const totalQuantity = 23;
 
 export { totalPrice, totalQuantity as tq };
 
-// export defaults - when want to export only one value
+// export defaults - when wanting to export only one value
 
 export default function (product, quantity) {
   cart.push({ product, quantity });
   console.log(`${quantity} ${product} added to cart`);
 }
+
+// ⬇️ CommonJS Modules
+
+// works in node.js - not in browser
+
+// export
+// export.addToCart = (product, quantity) => {
+//   cart.push({ product, quantity });
+//   console.log(
+//     `${quantity} ${product} added to cart (shipping cost is ${shippingCost})`
+//   );
+// };
+
+// import
+// const { addToCart } = require("./shoppingCart.js")
