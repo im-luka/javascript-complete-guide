@@ -118,3 +118,5 @@ console.log(stateDeepClone);
 if (module.hot) {
   module.hot.accept();
 }
+
+// ⬇️ Configuring Babel and Polyfilling
