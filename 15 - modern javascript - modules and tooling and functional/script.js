@@ -120,3 +120,17 @@ if (module.hot) {
 }
 
 // ⬇️ Configuring Babel and Polyfilling
+
+class Person {
+  #greeting = "hey";
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+const luka = new Person("luka");
+console.log("Luka" ?? null);
+console.log(cart.find((el) => el.quantity >= 2));
+Promise.resolve("TEST").then((el) => console.log(el));
+
+import "core-js/stable/array/find";
