@@ -45,3 +45,9 @@ Resources are project based and cover all of the main topics to help you start a
 ![mapty-app](https://user-images.githubusercontent.com/46372998/227782301-36661d90-d1ee-4266-b693-14945e7cba4f.png)
 
 ---
+
+#### *16 - forkify app*
+
+![forkify-app](https://user-images.githubusercontent.com/46372998/227782593-6ec99fb9-5644-486e-b728-4fcd4af20230.png)
+
+---
