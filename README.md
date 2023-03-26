@@ -1,6 +1,6 @@
 # 👾 Learning Javascript
 
-*Learning Javascript from scratch, by going through a course (highly recommend), to increase my knowledge on deeper level.  
+*Learning Javascript from scratch, by completing a 70+ hrs course (highly recommend), to increase my knowledge on deeper level.  
 Posting resources here. 📑  
 Resources are project based and cover all of the main topics to help you start as fast as possible.*
 
